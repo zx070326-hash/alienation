@@ -1,2 +1,9 @@
+# Static hint only. This file is published with the project site, at
+# https://zx070326-hash.github.io/alienation/robots.txt
+# Crawlers request the host root, https://zx070326-hash.github.io/robots.txt,
+# which this repository does not control. The dashboard page also sends
+# <meta name="robots" content="noindex, nofollow">. Neither makes the path private.
 User-agent: *
 Allow: /
+Disallow: /alienation/dashboard/
+Disallow: /dashboard/

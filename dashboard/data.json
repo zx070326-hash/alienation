@@ -1,0 +1,208 @@
+{
+  "updated": "2026-11-10",
+  "note": "Edit this file. Array order is display order. Public pages do not read it; update zh-*.html and en-*.html when a public fact changes. verified:false means the row is a placeholder, not a fact.",
+  "now": {
+    "zh": "请改掉这段。截至 2026-11-10，公开记录里能核对的是：ETALON 预印本已经挂在 ChemRxiv，光热超材料页面是一份暂停中的静态报告。这不是本周日程。",
+    "en": "Replace this paragraph. As of 10 November 2026 the public record shows the ETALON preprint on ChemRxiv, and a paused photothermal-metamaterial report on GitHub Pages. This is a bookmark, not a log of the week."
+  },
+  "projects": [
+    {
+      "name": "ETALON",
+      "visibility": "public",
+      "status": "preprint",
+      "priority": "",
+      "verified": true,
+      "summary": {
+        "zh": "ChemRxiv 预印本（2026-11-02），尚未同行评审。Xin Zheng 与 Zhaoqi Shi、Xufan Gao 贡献相同。代码在 AIB001/ETALON，不在本账号下。",
+        "en": "ChemRxiv preprint (2 Nov 2026), not peer reviewed. Xin Zheng contributed equally with Zhaoqi Shi and Xufan Gao. Code is AIB001/ETALON, not under this account."
+      },
+      "next": {
+        "zh": "未写。要记下一件实事，改这里。",
+        "en": "Not set. Write the next real action here."
+      },
+      "links": [
+        {"label": "ChemRxiv", "href": "https://chemrxiv.org/doi/full/10.26434/chemrxiv.15011490/v1"},
+        {"label": "DOI", "href": "https://doi.org/10.26434/chemrxiv.15011490/v1"},
+        {"label": "GitHub", "href": "https://github.com/AIB001/ETALON"}
+      ]
+    },
+    {
+      "name": "thin-modeling-agent",
+      "visibility": "public",
+      "status": "paused",
+      "priority": "",
+      "verified": true,
+      "summary": {
+        "zh": "开放数学建模的薄 harness。公开版本 0.25.0，最近一次公开推送 2026-08-31。暂停只表示此后没有新的公开提交。",
+        "en": "Thin harness for open mathematical modeling. Public version 0.25.0, last public push 31 Aug 2026. Paused means no later public commit, not that private drafts stopped."
+      },
+      "next": {
+        "zh": "未写。要记下一件实事，改这里。",
+        "en": "Not set. Write the next real action here."
+      },
+      "links": [
+        {"label": "GitHub", "href": "https://github.com/zx070326-hash/thin-modeling-agent"}
+      ]
+    },
+    {
+      "name": "TherapyMind",
+      "visibility": "public",
+      "status": "paused",
+      "priority": "",
+      "verified": true,
+      "summary": {
+        "zh": "研究原型，公开版本 3.7.0，仓库记录停在 2026-05-09。CITATION.cff 是软件引用，不是论文。没有公开部署。",
+        "en": "Research prototype, public v3.7.0. The repository stops on 9 May 2026. CITATION.cff cites software, not a paper. No public deployment."
+      },
+      "next": {
+        "zh": "未写。要记下一件实事，改这里。",
+        "en": "Not set. Write the next real action here."
+      },
+      "links": [
+        {"label": "GitHub", "href": "https://github.com/zx070326-hash/TherapyMind"}
+      ]
+    },
+    {
+      "name": "ai-native4material-web",
+      "visibility": "public",
+      "status": "paused",
+      "priority": "",
+      "verified": true,
+      "summary": {
+        "zh": "光热超材料的静态计算交付。仓库说明写明研究暂停，加工可行性尚未闭合。Pages 仍可打开。报告日期写到 2026-11-02，站点仓库 2026-11-07 还有推送。",
+        "en": "Static computational delivery for two photothermal metamaterial designs. The repo says the research is paused and manufacturability is still open. Pages still load. The report date is 2 Nov 2026; the site repo was pushed on 7 Nov 2026."
+      },
+      "next": {
+        "zh": "未写。要记下一件实事，改这里。",
+        "en": "Not set. Write the next real action here."
+      },
+      "links": [
+        {"label": "Pages", "href": "https://zx070326-hash.github.io/ai-native4material-web/"},
+        {"label": "Report", "href": "https://zx070326-hash.github.io/ai-native4material-web/final-report.html"},
+        {"label": "GitHub", "href": "https://github.com/zx070326-hash/ai-native4material-web"}
+      ]
+    },
+    {
+      "name": "cike-dbt-demo",
+      "visibility": "public",
+      "status": "demo",
+      "priority": "",
+      "verified": true,
+      "summary": {
+        "zh": "DBT 自助对话的本地演示，不是诊断或治疗工具。仓库写明书籍商业授权未确认，所以没有公开部署。最近推送 2026-08-19。",
+        "en": "Local DBT self-help dialogue demo. Not diagnosis or treatment. The repo says commercial use of the books is unconfirmed, so it is not publicly deployed. Last push 19 Aug 2026."
+      },
+      "next": {
+        "zh": "未写。要记下一件实事，改这里。",
+        "en": "Not set. Write the next real action here."
+      },
+      "links": [
+        {"label": "GitHub", "href": "https://github.com/zx070326-hash/cike-dbt-demo"}
+      ]
+    },
+    {
+      "name": "ai-self-study-materials",
+      "visibility": "public",
+      "status": "paused",
+      "priority": "",
+      "verified": true,
+      "summary": {
+        "zh": "给大一新生的 MIT 资料索引。2026-08-17 的更新日志写的是框架已建立、资料仍待填充。",
+        "en": "MIT-licensed study index for first-year students. The 17 Aug 2026 changelog says the frame exists and the materials were still to be filled in."
+      },
+      "next": {
+        "zh": "未写。要记下一件实事，改这里。",
+        "en": "Not set. Write the next real action here."
+      },
+      "links": [
+        {"label": "GitHub", "href": "https://github.com/zx070326-hash/ai-self-study-materials"}
+      ]
+    },
+    {
+      "name": {
+        "zh": "私有项目",
+        "en": "Private project"
+      },
+      "visibility": "private-placeholder",
+      "status": "unset",
+      "priority": "",
+      "verified": false,
+      "summary": {
+        "zh": "占位行。没有写入真实的私有仓库名称。确认之前不要当成事实。",
+        "en": "Placeholder row. No real private repository is named here. Do not treat it as a fact."
+      },
+      "next": {
+        "zh": "如果要记私有项目，改名称、状态和下一步。此文件仍会被公开下载。",
+        "en": "To track a private project, replace the name, status, and next action. This file can still be downloaded by anyone."
+      },
+      "links": []
+    }
+  ],
+  "achievements": [
+    {
+      "date": "2026-11-02",
+      "verified": true,
+      "title": {
+        "zh": "ETALON 预印本",
+        "en": "ETALON preprint"
+      },
+      "detail": {
+        "zh": "ChemRxiv，DOI 10.26434/chemrxiv.15011490/v1。CC-BY 4.0。尚未同行评审。Xin Zheng（浙江大学竺可桢学院、Future Learning Center）与 Zhaoqi Shi、Xufan Gao 贡献相同。通讯作者为 Zaixing Yang。",
+        "en": "ChemRxiv, DOI 10.26434/chemrxiv.15011490/v1. CC-BY 4.0. Not peer reviewed. Xin Zheng (Chu Kochen Honors College and Future Learning Center, Zhejiang University) contributed equally with Zhaoqi Shi and Xufan Gao. Corresponding author: Zaixing Yang."
+      },
+      "href": "https://chemrxiv.org/doi/full/10.26434/chemrxiv.15011490/v1"
+    },
+    {
+      "date": "2026-11-05",
+      "verified": true,
+      "title": {
+        "zh": "ETALON 公开代码可打开",
+        "en": "ETALON code is public"
+      },
+      "detail": {
+        "zh": "https://github.com/AIB001/ETALON 为公开仓库，Apache-2.0，页面描述为 CADD Harness。最近推送时间 2026-11-05。这里不把某一次提交记成个人单独完成。",
+        "en": "https://github.com/AIB001/ETALON is a public Apache-2.0 repository, described as a CADD harness. Last push 5 Nov 2026. This does not attribute a specific commit to one person."
+      },
+      "href": "https://github.com/AIB001/ETALON"
+    },
+    {
+      "date": "2026-11-02",
+      "verified": true,
+      "title": {
+        "zh": "光热超材料计算交付上线，研究暂停",
+        "en": "Photothermal report published, research paused"
+      },
+      "detail": {
+        "zh": "公开页面写明更新至 2026-11-02，并写明不能作为可直接投加工的方案。这不是期刊论文。",
+        "en": "The public page says it was updated through 2 Nov 2026, and that it is not a fabrication-ready design. This is not a journal paper."
+      },
+      "href": "https://zx070326-hash.github.io/ai-native4material-web/final-report.html"
+    },
+    {
+      "date": "2026-05-09",
+      "verified": true,
+      "title": {
+        "zh": "TherapyMind v3.7.0 作为软件公开",
+        "en": "TherapyMind v3.7.0 published as software"
+      },
+      "detail": {
+        "zh": "仓库 CITATION.cff 的 date-released 为 2026-05-09，类型是 software。没有对应的公开论文页面。",
+        "en": "CITATION.cff lists date-released 9 May 2026 and type software. There is no public paper page to match it."
+      },
+      "href": "https://github.com/zx070326-hash/TherapyMind"
+    },
+    {
+      "date": "",
+      "verified": false,
+      "title": {
+        "zh": "对外沟通",
+        "en": "Outreach"
+      },
+      "detail": {
+        "zh": "没有核对到可以写在这里的公开记录。占位，请改掉或删掉。",
+        "en": "No public outreach record was checked for this row. Placeholder: edit or delete it."
+      },
+      "href": ""
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+button.lang,button.lock{border:0;background:transparent;color:inherit;cursor:pointer}
+button.lock{font-size:13px;padding:12px 10px;line-height:20px;color:var(--muted)}
+button.button{border:0;cursor:pointer}
+.dash-gate{max-width:640px;margin:0 0 80px}
+.dash-warning,.dash-alt{color:var(--muted);font-size:14px;line-height:1.9;margin:0}
+.dash-alt{margin-top:14px;font-size:13px}
+.dash-gate form{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;margin-top:22px}
+.dash-field{display:flex;flex-direction:column;gap:6px;flex:1;min-width:220px}
+.dash-field span{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.dash-field input{min-height:46px;border-radius:100px;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:0 18px;font:inherit}
+.dash-error{min-height:1.6em;margin:14px 0 0;color:var(--accent);font-size:14px}
+.dash-section{margin:0 0 48px}
+.dash-now{background:var(--surface);border:1px solid #ffffff90;border-radius:18px;padding:28px;box-shadow:var(--shadow)}
+.dash-now p{margin:0;font-size:16px;line-height:1.9}
+.dash-grid{display:grid;gap:16px}
+.dash-card{background:var(--surface);border:1px solid #ffffff90;border-radius:18px;padding:22px 24px;box-shadow:var(--shadow)}
+.dash-card h3{font:500 20px/1.4 var(--sans);margin:8px 0;letter-spacing:-.02em}
+html[lang=en] .dash-card h3{font:italic 26px/1.25 var(--serif);font-weight:400}
+.dash-card p{margin:0;color:var(--muted);font-size:14px;line-height:1.85}
+.dash-meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.dash-next{margin-top:12px;padding-top:12px;border-top:1px solid var(--line);color:var(--ink);font-size:14px;line-height:1.75}
+.dash-next span{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.pill{font-size:11px;color:var(--muted);background:var(--panel);padding:3px 10px;border-radius:100px;white-space:nowrap}
+.pill[data-kind="unverified"]{background:transparent;border:1px dashed var(--line)}
+.dash-foot{color:var(--muted);font-size:13px;line-height:1.8;margin:0 0 48px;max-width:720px}
+html[data-theme=dark] .dash-now,html[data-theme=dark] .dash-card{border-color:var(--line)}
+@media(max-width:760px){.dash-now,.dash-card{padding:20px}html[lang=en] .dash-card h3{font-size:24px}}
