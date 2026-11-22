@@ -2,8 +2,8 @@
   "updated": "2026-11-22",
   "note": "Edit this file. Array order is display order. Public pages do not read it; update zh-*.html and en-*.html when a public fact changes. verified:false means the row is a placeholder, not a fact.",
   "now": {
-    "zh": "请改掉这段。截至 2026-11-22，札记里新写了两章：超材料与波动调控，以及 DMGC 的三条公开题。两章都只写方向，不写数值。ETALON 仍是未评审的预印本。这不是本周日程。",
-    "en": "Replace this paragraph. As of 22 November 2026 the notebook has two new chapters: metamaterials and wave control, and three public DMGC problems. Both chapters give direction only, not numbers. ETALON is still an unreviewed preprint. This is not a log of the week."
+    "zh": "请改掉这段。札记里有两章进行中的笔记：超材料与波动调控，以及 DMGC 的三条公开题。两章只写方向。ETALON 仍是未评审的预印本。这不是日程。",
+    "en": "Replace this paragraph. The notebook has two chapters in progress: metamaterials and wave control, and three public DMGC problems. Both give direction only. ETALON is still an unreviewed preprint. This is not a schedule."
   },
   "projects": [
     {

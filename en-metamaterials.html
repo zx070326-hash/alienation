@@ -39,35 +39,95 @@
 <div class="page-heading">
 <p class="eyebrow">CHAPTER / IN PROGRESS</p>
 <h1>Metamaterials and wave control</h1>
-<p class="lead">Four theoretical notes, still being written. They ask one kind of question: how a wave in a made structure can be blocked, passed, or allowed in only one direction. This chapter gives the direction, not the numbers.</p>
+<p class="lead">Four theoretical threads, still open. Each asks how a structure lets a wave pass, stop, or travel in only one direction. The figures are schematics. They are not measurements, and they are not finished devices.</p>
 </div>
 <section id="question">
 <h2>The question</h2>
-<p>A metamaterial is a structure someone arranges. The arrangement can send a wave along a path a uniform material would not. I am not trying to show another finished device. I want to know where those paths stop.</p>
-<p>All four threads are still theory. Calculation is there to check an idea. There is no citable final paper, and no experiment of mine that closes them.</p>
+<p>A metamaterial changes the path of a wave by arrangement. The notes cover four lines: magnet-free optical isolation on a chip; how far a laminate can push an effective elastic property; where a time-varying response slows; and whether a directional difference in thermal radiation can cover a wide band.</p>
+<p>These are theory and calculation. On this public site they are not presented as a citable paper. The photothermal report linked from the projects page is a separate delivery, already marked paused.</p>
 </section>
 <section id="map">
 <h2>Four threads</h2>
-<figure class="plate">
-<div class="map">
-<p class="map-core">Wave control</p>
-<ul>
-<li>Magnet-free on-chip isolation<small>Without a magnet, can light be kept mostly one-way</small></li>
-<li>Elastic laminate limits<small>How far a stack of elastic layers can push an effective property</small></li>
-<li>Time-varying bottlenecks<small>When the material itself changes in time, where the response slows</small></li>
-<li>Nonreciprocal thermal radiation<small>Whether a directional difference in thermal emission can cover a wide band</small></li>
-</ul>
-</div>
-<figcaption>The figure names the four threads. It has no axes, no data, and no winner.</figcaption>
-</figure>
 <h3>Magnet-free optical isolation, on a chip</h3>
-<p>Light usually travels both ways. Isolation asks it to travel mostly one way. A common laboratory route uses a magnet. A chip is a poor place for a magnet, so the question is how far isolation can go without a magneto-optic material, and what it costs. The cost might be bandwidth, loss, or an extra drive. The actual bound does not belong on this page.</p>
+<p>Light usually travels both ways. Isolation asks one way to pass and the other to be stopped. A common laboratory route uses a magnet. A chip is a poor place for one, so the question is how far the contrast survives without a magneto-optic material, and what it costs in bandwidth, loss, or an extra drive. The bound itself is not written here.</p>
+<figure class="plate">
+<svg class="figure-svg" viewBox="0 0 320 188" role="img" aria-labelledby="iso-t iso-d">
+<title id="iso-t">Forward passage and a turned-back reverse wave</title>
+<desc id="iso-d">A solid wave travels left to right through a narrow dashed gate. A dashed wave travels right to left and turns back at a hatched region. Solid, dashed, and hatch mark the contrast together. Schematic, not a measurement.</desc>
+<text x="4" y="18" font-size="13">Forward</text>
+<path d="M70 46 q10 -12 20 0 t20 0 t20 0 t20 0 t20 0" fill="none" stroke="currentColor" stroke-width="1.6"/>
+<line x1="176" y1="46" x2="236" y2="46" stroke="currentColor" stroke-width="1.6"/>
+<path d="M232 40 l14 6 -14 6" fill="none" stroke="currentColor" stroke-width="1.6"/>
+<rect x="154" y="28" width="22" height="36" fill="none" stroke="currentColor" stroke-dasharray="2 2"/>
+<text x="146" y="80" font-size="12">Passes</text>
+<text x="4" y="112" font-size="13">Reverse</text>
+<line x1="292" y1="140" x2="198" y2="140" stroke="currentColor" stroke-width="1.6" stroke-dasharray="5 3.5"/>
+<path d="M206 134 l-12 6 12 6" fill="none" stroke="currentColor" stroke-width="1.6"/>
+<g stroke="currentColor" stroke-width="1.1"><line x1="168" y1="118" x2="188" y2="162"/><line x1="178" y1="118" x2="198" y2="162"/><line x1="188" y1="118" x2="208" y2="162"/></g>
+<path d="M176 140 q-18 0 -18 18 h28" fill="none" stroke="currentColor" stroke-width="1.5"/>
+<text x="188" y="176" font-size="12">Turns back</text>
+</svg>
+<figcaption><span class="fig-no">Figure 1</span>The solid line continues. The dashed line turns back at the hatch. Schematic, not experimental data.</figcaption>
+</figure>
 <h3>Limits of elastic laminates</h3>
-<p>Stack layers of different stiffness and the stack can behave like one new elastic material. The number of layers and the stacking can change. The question is whether some effective behaviors stay out of reach of laminates. This is a question in elasticity theory, not a sample on a bench.</p>
+<p>Layers of different stiffness can behave, together, like another elastic solid. The normal of the layers and the direction of the load are not the same arrow. The question is whether some effective properties stay out of reach of stacking alone. This is elasticity theory, not a sample on a bench.</p>
+<figure class="plate">
+<svg class="figure-svg" viewBox="0 0 320 200" role="img" aria-labelledby="lam-t lam-d">
+<title id="lam-t">Layers, load, and the layer normal</title>
+<desc id="lam-d">Five alternating bands, dots and diagonals, stand for two kinds of layer. A downward arrow is the load. A sideways arrow is the layer normal. Schematic, with no computed values.</desc>
+<rect x="70" y="28" width="120" height="22" fill="none" stroke="currentColor"/>
+<g stroke="currentColor" stroke-width=".8"><line x1="78" y1="32" x2="90" y2="48"/><line x1="94" y1="32" x2="106" y2="48"/><line x1="110" y1="32" x2="122" y2="48"/><line x1="126" y1="32" x2="138" y2="48"/><line x1="142" y1="32" x2="154" y2="48"/><line x1="158" y1="32" x2="170" y2="48"/></g>
+<rect x="70" y="50" width="120" height="22" fill="none" stroke="currentColor"/>
+<g fill="currentColor"><circle cx="88" cy="61" r="1.3"/><circle cx="108" cy="61" r="1.3"/><circle cx="128" cy="61" r="1.3"/><circle cx="148" cy="61" r="1.3"/><circle cx="168" cy="61" r="1.3"/></g>
+<rect x="70" y="72" width="120" height="22" fill="none" stroke="currentColor"/>
+<g stroke="currentColor" stroke-width=".8"><line x1="78" y1="76" x2="90" y2="92"/><line x1="94" y1="76" x2="106" y2="92"/><line x1="110" y1="76" x2="122" y2="92"/><line x1="126" y1="76" x2="138" y2="92"/><line x1="142" y1="76" x2="154" y2="92"/><line x1="158" y1="76" x2="170" y2="92"/></g>
+<rect x="70" y="94" width="120" height="22" fill="none" stroke="currentColor"/>
+<g fill="currentColor"><circle cx="88" cy="105" r="1.3"/><circle cx="108" cy="105" r="1.3"/><circle cx="128" cy="105" r="1.3"/><circle cx="148" cy="105" r="1.3"/><circle cx="168" cy="105" r="1.3"/></g>
+<rect x="70" y="116" width="120" height="22" fill="none" stroke="currentColor"/>
+<g stroke="currentColor" stroke-width=".8"><line x1="78" y1="120" x2="90" y2="136"/><line x1="94" y1="120" x2="106" y2="136"/><line x1="110" y1="120" x2="122" y2="136"/><line x1="126" y1="120" x2="138" y2="136"/><line x1="142" y1="120" x2="154" y2="136"/><line x1="158" y1="120" x2="170" y2="136"/></g>
+<path d="M130 8 v12" stroke="currentColor" stroke-width="1.4"/><path d="M124 16 l6 8 6 -8" fill="none" stroke="currentColor" stroke-width="1.4"/>
+<text x="148" y="16" font-size="12">Load</text>
+<path d="M202 82 h28" stroke="currentColor" stroke-width="1.4"/><path d="M224 76 l8 6 -8 6" fill="none" stroke="currentColor" stroke-width="1.4"/>
+<text x="206" y="108" font-size="12">Normal</text>
+</svg>
+<figcaption><span class="fig-no">Figure 2</span>Dots and diagonals are two kinds of layer, not two data series. Schematic, not experimental data.</figcaption>
+</figure>
 <h3>Reaction bottlenecks in time-varying systems</h3>
-<p>If the material itself is still changing in time, the response cannot become arbitrarily fast, and it cannot obey every frequency at once. A bottleneck is the place where it slows down, or cannot be done. The notes keep “this can be built” separate from “this cannot.” An unfinished calculation is not a proof that something is impossible.</p>
+<p>If the material itself is still changing, the response cannot speed up at every frequency at once. A bottleneck is where the exchange between ports slows, or cannot be done under the stated assumptions. An unfinished calculation is not a proof that something is impossible.</p>
+<figure class="plate">
+<svg class="figure-svg" viewBox="0 0 320 150" role="img" aria-labelledby="tv-t tv-d">
+<title id="tv-t">A property that changes in time, and an exchange between ports</title>
+<desc id="tv-d">An unscaled rise and fall stands for a property changing in time. Two ports, one solid and one dashed, are joined by arrows marked exchange. Schematic. The curve is not a measurement.</desc>
+<text x="4" y="18" font-size="12">Time</text>
+<line x1="44" y1="28" x2="300" y2="28" stroke="currentColor" stroke-width="1"/>
+<path d="M296 24 l8 4 -8 4" fill="none" stroke="currentColor"/>
+<path d="M48 28 q16 -16 32 0 t32 0 t32 0 t32 0 t32 0 t32 0" fill="none" stroke="currentColor" stroke-width="1.5"/>
+<rect x="16" y="78" width="64" height="36" fill="none" stroke="currentColor"/>
+<text x="32" y="100" font-size="12">Port</text>
+<rect x="230" y="78" width="64" height="36" fill="none" stroke="currentColor" stroke-dasharray="4 3"/>
+<text x="246" y="100" font-size="12">Port</text>
+<path d="M88 88 h46" stroke="currentColor" stroke-width="1.3"/><path d="M128 82 l8 6 -8 6" fill="none" stroke="currentColor" stroke-width="1.3"/>
+<path d="M222 104 h-46" stroke="currentColor" stroke-width="1.3" stroke-dasharray="4 3"/><path d="M182 98 l-8 6 8 6" fill="none" stroke="currentColor" stroke-width="1.3"/>
+<text x="132" y="78" font-size="12">Exchange</text>
+</svg>
+<figcaption><span class="fig-no">Figure 3</span>The wave has no scale. Solid and dashed mark the two directions of exchange. Schematic, not experimental data.</figcaption>
+</figure>
 <h3>Broadband nonreciprocal thermal radiation</h3>
-<p>A warm object emits electromagnetic waves of its own. Nonreciprocal means emission and absorption need not match. If that mismatch lives only in a very narrow band, it is of limited use. The question is how wide the mismatch can be, and what stops it from getting wider. The reasons should come from electromagnetic theory and the basic accounting of heat, not from borrowing a paper’s conclusion as the answer.</p>
+<p>A warm body emits electromagnetic waves of its own. Nonreciprocal means emission and absorption need not match. A mismatch that lives only in a very narrow band is of limited use. The question is how wide it can become, and what stops it. The reasons should come from electromagnetic theory and the accounting of heat, not from taking another paper’s conclusion as the answer.</p>
+<figure class="plate">
+<svg class="figure-svg" viewBox="0 0 320 150" role="img" aria-labelledby="th-t th-d">
+<title id="th-t">Emission and absorption need not match</title>
+<desc id="th-d">A thick solid arrow leaves the body, labeled emission. A thinner dashed arrow enters, labeled absorption. There is no frequency axis. Schematic, not a spectrum.</desc>
+<rect x="118" y="48" width="84" height="54" fill="none" stroke="currentColor" stroke-width="1.4"/>
+<g stroke="currentColor" stroke-width=".7"><line x1="128" y1="56" x2="140" y2="94"/><line x1="144" y1="56" x2="156" y2="94"/><line x1="160" y1="56" x2="172" y2="94"/><line x1="176" y1="56" x2="188" y2="94"/></g>
+<text x="136" y="80" font-size="13">Body</text>
+<path d="M202 62 h58" stroke="currentColor" stroke-width="2.4"/><path d="M252 54 l14 8 -14 8" fill="none" stroke="currentColor" stroke-width="2"/>
+<text x="214" y="52" font-size="12">Emitted</text>
+<path d="M118 92 h-58" stroke="currentColor" stroke-width="1.2" stroke-dasharray="4 3"/><path d="M68 86 l-12 6 12 6" fill="none" stroke="currentColor" stroke-width="1.2"/>
+<text x="18" y="118" font-size="12">Absorbed</text>
+</svg>
+<figcaption><span class="fig-no">Figure 4</span>Thickness and dash distinguish the two directions. Schematic, not experimental data.</figcaption>
+</figure>
 </section>
 <section id="method">
 <h2>Method</h2>
@@ -76,12 +136,12 @@
 </section>
 <section id="stage">
 <h2>Where it is</h2>
-<p>All four threads are still open. The notes run through November 2026. They have been revised, and some routes have been set aside. Setting a route aside is not the same as a final proof. There is no public experiment, and no paper to cite.</p>
+<p>All four threads are still open. Some routes have been set aside. Setting a route aside is not a final bound. This chapter has no experimental curve, and it does not present the notes as a published paper.</p>
 <p>A separate photothermal-metamaterial report is already public and marked paused. That page says it is not ready to fabricate. It is not this chapter.</p>
 </section>
 <section id="limit">
 <h2>What this chapter is not</h2>
-<aside class="limit"><p>It is not a breakthrough, a prize, a finished sample, or a number that has been established. The figure and the text only say which four questions the notes are on, and that they are still theory and calculation.</p></aside>
+<aside class="limit"><p>The figures are schematics, not a breakthrough, a prize, or a finished sample. Numbers, candidate structures, and sealed checks stay out of the chapter.</p></aside>
 </section>
 <nav class="chapter-turn" aria-label="Chapters">
 <a href="en-projects.html">← Contents</a>

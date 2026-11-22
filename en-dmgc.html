@@ -39,45 +39,66 @@
 <div class="page-heading">
 <p class="eyebrow">CHAPTER / IN PROGRESS</p>
 <h1>DMGC, the materials challenges</h1>
-<p class="lead">Discovered Materials has published a set of old materials problems and called them still open, but checkable. I am reading three of them. This chapter explains the questions and how I check myself. It does not report a score.</p>
+<p class="lead">Discovered Materials has published a set of long-standing materials problems and written them so that an answer can be checked. This chapter covers three of them, and the way the notes check themselves. It does not report a score.</p>
 </div>
 <section id="question">
 <h2>The question</h2>
-<p>The public page says these are long-studied mysteries in materials science, still unsolved, and posed so that an answer can be checked. On 22 November 2026 the three below were marked Open.</p>
-<p>The public list has five problems. I am not following the cuprate-superconductivity problem, or the problem about tuning materials with light. Only the three in the notes are here.</p>
+<p>The public list calls these problems still unsolved, and posed so that an answer can be checked. The notes cover three: heat at an interface, electrical behavior left by a process history, and the speed and accuracy of an exchange-correlation functional. The list contains other problems. This chapter does not take them up.</p>
 <p class="card-links"><a href="https://discoveredmaterials.com/grand-challenges/">Public problem list</a><a href="https://discoveredmaterials.com/grand-challenges/official-rules">Rules</a></p>
 </section>
 <section id="tracks">
 <h2>Three problems</h2>
 <figure class="plate">
-<div class="tracks">
-<p class="track">P05 · Interface heat<small>How heat crosses a solid interface</small></p>
-<p class="track">P02 · Interface electronics<small>How a process history becomes electrical behavior</small></p>
-<p class="track">P03 · Speed and accuracy<small>Whether an exchange-correlation functional can be both</small></p>
-</div>
-<ol class="flow">
-<li>Preregister<small>Write the claim before the comparison</small></li>
-<li>Seal<small>Do not peek at the check</small></li>
-<li>Evaluate<small>Use a test that was kept separate</small></li>
-<li>Revise<small>Change the claim, or set it aside</small></li>
-</ol>
-<figcaption>The top row is three public problems. The bottom row is the order of a self-check. There is no score, and nothing from the seal is shown.</figcaption>
+<svg class="figure-svg" viewBox="0 0 320 168" role="img" aria-labelledby="if-t if-d">
+<title id="if-t">Heat and charge need not cross an interface the same way</title>
+<desc id="if-d">Two materials meet at a jagged boundary. Heat is a wavy dashed line that scatters near the boundary. Charge is a straight arrow with a plus that crosses. Schematic, not a measured heat flow or current.</desc>
+<rect x="16" y="36" width="120" height="88" fill="none" stroke="currentColor"/>
+<g fill="currentColor"><circle cx="40" cy="58" r="1.2"/><circle cx="64" cy="58" r="1.2"/><circle cx="88" cy="58" r="1.2"/><circle cx="40" cy="82" r="1.2"/><circle cx="64" cy="82" r="1.2"/><circle cx="88" cy="82" r="1.2"/></g>
+<text x="36" y="114" font-size="13">Solid A</text>
+<path d="M136 36 l10 14 -10 14 10 14 -10 14 10 14 -10 18" fill="none" stroke="currentColor" stroke-width="1.4"/>
+<rect x="146" y="36" width="120" height="88" fill="none" stroke="currentColor"/>
+<g stroke="currentColor" stroke-width=".7"><line x1="164" y1="46" x2="176" y2="114"/><line x1="188" y1="46" x2="200" y2="114"/><line x1="212" y1="46" x2="224" y2="114"/><line x1="236" y1="46" x2="248" y2="114"/></g>
+<text x="168" y="114" font-size="13">Solid B</text>
+<path d="M70 28 q20 8 40 0 t30 6" fill="none" stroke="currentColor" stroke-width="1.3" stroke-dasharray="3 2"/>
+<path d="M128 22 l6 4 -8 2" fill="none" stroke="currentColor"/>
+<path d="M150 24 q-8 6 -4 12" fill="none" stroke="currentColor" stroke-dasharray="3 2"/>
+<text x="78" y="16" font-size="12">Heat</text>
+<line x1="48" y1="148" x2="200" y2="148" stroke="currentColor" stroke-width="1.4"/>
+<path d="M196 142 l10 6 -10 6" fill="none" stroke="currentColor" stroke-width="1.4"/>
+<text x="210" y="152" font-size="12">Charge +</text>
+</svg>
+<figcaption><span class="fig-no">Figure 1</span>The wavy dash is heat. The straight line is charge. They need not cross alike. Schematic, not experimental data.</figcaption>
 </figure>
 <h3>P05, heat at an interface</h3>
 <p>Where two solids meet, heat does not always cross. A device that wants to waste less energy has to understand that boundary. The public problem asks for a prediction, not another sentence saying that interfaces matter. My notes are calculation and reading. They are not a new measured thermal conductance.</p>
 <h3>P02, electricity left by the process</h3>
 <p>The electrical behavior of a semiconductor interface is not a number the material is born with. It depends on how the interface was grown, cooled, and annealed. The problem asks whether that later behavior can be predicted from the process history alone. A model that falls over when the process changes has not held.</p>
 <h3>P03, fast and accurate</h3>
-<p>In quantum chemistry, an accurate method is often a slow one. An exchange-correlation functional is the piece of density-functional theory that stands in for how electrons interact. The problem asks whether reaction energies, transition states, and electron transfer can stay accurate at a much lower cost. If accurate and fast remain a choice, the problem is still open.</p>
+<p>In quantum chemistry, an accurate method is often a slow one. An exchange-correlation functional is the piece of density-functional theory that stands in for how electrons interact. The public problem asks whether reaction energies, transition states, and electron transfer can stay accurate at a much lower cost. If accurate and fast remain a choice, the problem is still open.</p>
+<figure class="plate">
+<svg class="figure-svg" viewBox="0 0 320 132" role="img" aria-labelledby="ac-t ac-d">
+<title id="ac-t">Fine and slow, coarse and fast, and an open question between them</title>
+<desc id="ac-d">Many short strokes on the left are marked fine. A few long strokes on the right are marked coarse. A question mark sits between them. There are no axes and no numeric curve.</desc>
+<g stroke="currentColor" stroke-width="1.2"><line x1="28" y1="28" x2="28" y2="46"/><line x1="40" y1="24" x2="40" y2="50"/><line x1="52" y1="30" x2="52" y2="48"/><line x1="64" y1="22" x2="64" y2="52"/><line x1="76" y1="32" x2="76" y2="50"/><line x1="88" y1="26" x2="88" y2="48"/></g>
+<text x="36" y="74" font-size="13">Fine</text>
+<text x="24" y="94" font-size="12">Many steps</text>
+<g stroke="currentColor" stroke-width="2.2"><line x1="214" y1="24" x2="214" y2="56"/><line x1="238" y1="30" x2="238" y2="56"/><line x1="262" y1="20" x2="262" y2="56"/></g>
+<text x="220" y="74" font-size="13">Coarse</text>
+<text x="208" y="94" font-size="12">Few steps</text>
+<text x="148" y="52" font-size="22">?</text>
+<text x="118" y="116" font-size="12">Can both be had?</text>
+</svg>
+<figcaption><span class="fig-no">Figure 2</span>More strokes on the left, fewer on the right. The question mark is not a fitted curve. Schematic, not experimental data.</figcaption>
+</figure>
 </section>
 <section id="method">
 <h2>Method</h2>
-<p>The order is the figure. Write the claim first. That is the preregistration. Seal it, so the wording cannot be edited while looking at the outcome. Only then evaluate. If the evaluation fails, revise the claim, or set it aside in so many words.</p>
+<p>The check has an order. Write the claim first. That is the preregistration. Seal it, so the wording cannot be edited while looking at the outcome. Only then evaluate. If the evaluation fails, revise the claim, or set it aside in so many words.</p>
 <p>Some computed models have already failed to match and have been set aside. The ones still in play are not settled. Which model, and by how much, is not written here. That would turn this page into a results table that is not ready to be public.</p>
 </section>
 <section id="stage">
 <h2>Where it is</h2>
-<p>The notes run through November 2026, and all three problems are still being revised. This is theory and calculation, plus reading of the public literature. It is not a new experiment of mine, and it is not a solution that has been submitted and accepted.</p>
+<p>All three problems are still being revised. The work is theory, calculation, and reading of the public literature. It is not a new measurement, and it is not a solution that has been submitted and accepted.</p>
 <p>A failed calculation and a failed experiment are different. A calculation that does not match means that model, or that setup, did not hold. It is not evidence that the material itself cannot work, and it is not an experimental confirmation.</p>
 </section>
 <section id="limit">

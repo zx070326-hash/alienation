@@ -39,7 +39,7 @@ Public pages are hand-written HTML. The dashboard does not fill them. When a fac
 
 Keep a claim tied to a link that opens. The copy checked on 10 November 2026 used the ChemRxiv record for ETALON (DOI `10.26434/chemrxiv.15011490/v1`, posted 2 November 2026, not peer reviewed) and the public repositories under `zx070326-hash` and `AIB001`.
 
-The two chapters added on 22 November 2026 are direction only. Metamaterials names four theoretical threads and says they are unpublished and not experimentally validated. DMGC names three problems from the public Discovered Materials list and the preregister, seal, evaluate, revise order. Do not add numbers, candidate systems, sealed checks, or links to private repositories.
+Reading pages use subset webfonts under `assets-fonts/` (Noto Serif SC, Source Serif 4, Source Sans 3, SIL Open Font License). The two chapters are direction only. Metamaterials names four theoretical threads and says they are unpublished and not experimentally validated. DMGC names three problems from the public Discovered Materials list and the preregister, seal, evaluate, revise order. Do not add numbers, candidate systems, sealed checks, or links to private repositories.
 
 `awm-site` is a fork of `Ephemeral6/awm-site`. Its public commits are from the upstream author, so it is not listed as a personal project.
 
