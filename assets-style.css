@@ -3,7 +3,7 @@
 @font-face{font-family:"Source Serif 4";src:url("assets-fonts/source-serif-4.woff2") format("woff2");font-weight:200 900;font-style:normal;font-display:swap}
 @font-face{font-family:"Source Serif 4";src:url("assets-fonts/source-serif-4-italic.woff2") format("woff2");font-weight:200 900;font-style:italic;font-display:swap}
 @font-face{font-family:"Source Sans 3";src:url("assets-fonts/source-sans-3.woff2") format("woff2");font-weight:200 900;font-style:normal;font-display:swap}
-:root{color-scheme:light;--paper:#f3eee4;--surface:#faf6ef;--ink:#241c16;--muted:#5c5348;--line:#d5c9b8;--accent:#31485a;--accent-ink:#f6f1e8;--panel:#efe6d6;--hover:#e7dece;--sans:"Source Sans 3",system-ui,sans-serif;--serif:"Source Serif 4","Noto Serif SC",Palatino,"Songti SC",serif;--song:"Noto Serif SC","Source Serif 4","Songti SC",PMingLiU,serif;--shadow:none}
+:root{color-scheme:light;--paper:#f3eee4;--surface:#faf6ef;--ink:#241c16;--muted:#5c5348;--line:#d5c9b8;--accent:#31485a;--accent-ink:#f6f1e8;--panel:#efe6d6;--hover:#e7dece;--sans:"Source Sans 3","Noto Serif SC",system-ui,sans-serif;--serif:"Source Serif 4","Noto Serif SC",Palatino,"Songti SC",serif;--song:"Noto Serif SC","Source Serif 4","Songti SC",PMingLiU,serif;--shadow:none}
 html[data-theme=dark]{color-scheme:dark;--paper:#16130f;--surface:#221c17;--ink:#f4ecdf;--muted:#cbbba6;--line:#3c342c;--accent:#e6d3b0;--accent-ink:#221c16;--panel:#2c251e;--hover:#342c24;--shadow:none}
 @media(prefers-color-scheme:dark){html:not([data-theme=light]){color-scheme:dark;--paper:#16130f;--surface:#221c17;--ink:#f4ecdf;--muted:#cbbba6;--line:#3c342c;--accent:#e6d3b0;--accent-ink:#221c16;--panel:#2c251e;--hover:#342c24;--shadow:none}}
 *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:24px}body{margin:0;background:var(--paper);background-image:radial-gradient(ellipse at 15% 15%,#ffffff62,transparent 48%),radial-gradient(ellipse at 90% 65%,#ffffff42,transparent 50%);color:var(--ink);font:400 16px/1.8 var(--sans);-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}button{font:inherit}a,button{-webkit-tap-highlight-color:transparent}a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:6px;border-radius:4px}::selection{background:var(--accent);color:var(--accent-ink)}[hidden]{display:none!important}h1,h2,h3,p{overflow-wrap:anywhere}.site{max-width:1240px;margin:auto;padding:0 48px}.skip{position:absolute;left:20px;top:-70px;background:var(--ink);color:var(--paper);padding:14px;z-index:10}.skip:focus{top:12px}
@@ -110,3 +110,40 @@ html[lang=en] .figure-svg text{font-family:"Source Serif 4","Noto Serif SC",seri
 .fig-no{font-family:var(--serif);font-style:italic;margin-right:.55em;color:var(--ink)}
 html[data-theme=dark] body{background-image:none}
 html[data-theme=dark] .index-row,html[data-theme=dark] .project-card,html[data-theme=dark] .plate,html[data-theme=dark] .contents a,html[data-theme=dark] .dash-card,html[data-theme=dark] .dash-now{border-color:var(--line);background:transparent}
+.icon{width:1.15em;height:1.15em;display:inline-block;vertical-align:-.18em;flex:none;color:inherit}
+.with-icon{display:inline-flex;align-items:center;gap:.4em}
+.brief{margin:0 0 1.6rem;padding:0 0 1.2rem;border-bottom:1px solid var(--line)}
+.chapter .brief-label,.brief-label{display:flex;align-items:center;gap:.45em;margin:0 0 .55rem;font-family:var(--sans);font-size:12px;letter-spacing:.14em;line-height:1.4;text-transform:uppercase;color:var(--muted)}
+.chapter .brief-one,.brief-one{margin:0 0 1.05rem;font-size:1.28rem;line-height:1.65;color:var(--ink);max-width:38rem}
+html[lang=en] .chapter .brief-one,html[lang=en] .brief-one{font-family:var(--serif);font-size:1.42rem;line-height:1.45;font-weight:460}
+.brief-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.chapter .brief-grid h2{margin:0 0 .35rem;font-size:1.02rem;line-height:1.4;font-weight:560;font-style:normal}
+html[lang=en] .chapter .brief-grid h2{font-family:var(--serif);font-style:italic;font-weight:460;font-size:1.2rem}
+.chapter .brief-grid p{margin:0;color:var(--ink);font-size:1rem;line-height:1.75}
+html[lang=en] .chapter .brief-grid p{line-height:1.65}
+.lane{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:0 0 .4rem}
+.lane figure{margin:0;padding:14px 8px 12px;border-top:1px solid var(--line)}
+.lane .icon{width:28px;height:28px;display:block;margin:0 0 8px}
+.chapter .lane figcaption,.lane figcaption{font-family:var(--sans);font-size:12px;line-height:1.45;color:var(--muted)}
+.stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin:1rem 0 .35rem}
+.stat{padding:12px 0 4px;border-top:1px solid var(--line)}
+.stat b{display:block;font-family:var(--serif);font-weight:460;font-size:1.55rem;line-height:1.2;letter-spacing:-.02em}
+.stat span{display:block;margin-top:.35rem;font-family:var(--sans);font-size:12px;line-height:1.45;color:var(--muted)}
+.timeline{list-style:none;margin:0 0 1.2rem;padding:0;border-left:1px solid var(--line)}
+.chapter .timeline,.timeline{padding-left:0}
+.timeline li{position:relative;margin:0;padding:.15rem 0 1rem 1.15rem}
+.chapter .timeline li{margin:0;padding:.15rem 0 1rem 1.15rem;font-size:1rem;line-height:1.7}
+.timeline li::before{content:"";position:absolute;left:-4px;top:.55rem;width:7px;height:7px;border:1px solid var(--ink);border-radius:50%;background:var(--paper)}
+.timeline time{display:block;font-family:var(--sans);font-size:12px;letter-spacing:.06em;color:var(--muted);line-height:1.4}
+.chapter .timeline p,.timeline p{margin:.15rem 0 0;font-size:1rem;line-height:1.65}
+html[lang=en] .chapter .timeline p,html[lang=en] .chapter .timeline li{line-height:1.55}
+.chapter p.source-note{font-family:var(--sans);font-size:13px;line-height:1.7;color:var(--muted);margin:0 0 1.2rem}
+.record{padding:0 0 56px}
+abbr.term{font-style:inherit;text-decoration:underline dotted;text-underline-offset:.22em;cursor:help}
+@media(max-width:760px){
+.brief-grid{grid-template-columns:1fr}
+.lane{grid-template-columns:1fr 1fr}
+.chapter .brief-one,.brief-one{font-size:1.12rem}
+html[lang=en] .chapter .brief-one,html[lang=en] .brief-one{font-size:1.28rem}
+.stat b{font-size:1.35rem}
+}

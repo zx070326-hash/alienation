@@ -31,6 +31,7 @@ Public pages are hand-written HTML. The dashboard does not fill them. When a fac
 
 - `zh-metamaterials.html` and `en-metamaterials.html`
 - `zh-dmgc.html` and `en-dmgc.html`
+- `zh-etalon.html` and `en-etalon.html`
 - `zh-projects.html` and `en-projects.html`
 - `zh-reports.html` and `en-reports.html`
 - `zh-ideas.html` and `en-ideas.html`
@@ -39,7 +40,7 @@ Public pages are hand-written HTML. The dashboard does not fill them. When a fac
 
 Keep a claim tied to a link that opens. The copy checked on 10 November 2026 used the ChemRxiv record for ETALON (DOI `10.26434/chemrxiv.15011490/v1`, posted 2 November 2026, not peer reviewed) and the public repositories under `zx070326-hash` and `AIB001`.
 
-Reading pages use subset webfonts under `assets-fonts/` (Noto Serif SC, Source Serif 4, Source Sans 3, SIL Open Font License). The two chapters are direction only. Metamaterials names four theoretical threads and says they are unpublished and not experimentally validated. DMGC names three problems from the public Discovered Materials list and the preregister, seal, evaluate, revise order. Do not add numbers, candidate systems, sealed checks, or links to private repositories.
+Reading pages use subset webfonts under `assets-fonts/` (Noto Serif SC, Source Serif 4, Source Sans 3, SIL Open Font License). Icons are inline strokes in `assets-icons.svg`, drawn in `currentColor`, with no external icon font. The metamaterials and DMGC chapters are direction only: schematic figures are labeled as such, and they do not carry numbers, candidate systems, sealed checks, or links to private repositories. ETALON’s dates, equal-contribution line, three systems, CC BY 4.0, and the four Apache-2.0 repositories are taken from the public ChemRxiv preprint and the public GitHub repositories. Do not add citation counts, prize claims, or private-repo figures.
 
 `awm-site` is a fork of `Ephemeral6/awm-site`. Its public commits are from the upstream author, so it is not listed as a personal project.
 

@@ -2,8 +2,8 @@
   "updated": "2026-11-22",
   "note": "Edit this file. Array order is display order. Public pages do not read it; update zh-*.html and en-*.html when a public fact changes. verified:false means the row is a placeholder, not a fact.",
   "now": {
-    "zh": "请改掉这段。札记里有两章进行中的笔记：超材料与波动调控，以及 DMGC 的三条公开题。两章只写方向。ETALON 仍是未评审的预印本。这不是日程。",
-    "en": "Replace this paragraph. The notebook has two chapters in progress: metamaterials and wave control, and three public DMGC problems. Both give direction only. ETALON is still an unreviewed preprint. This is not a schedule."
+    "zh": "请改掉这段。札记里有三章：超材料、DMGC，以及 ETALON 预印本。前两章只写方向。ETALON 仍未同行评审。这不是日程。",
+    "en": "Replace this paragraph. The notebook has three chapters: metamaterials, DMGC, and the ETALON preprint. The first two give direction only. ETALON is still not peer reviewed. This is not a schedule."
   },
   "projects": [
     {
@@ -61,6 +61,7 @@
         "en": "Not set. Write the next real action here."
       },
       "links": [
+        {"label": "Chapter", "href": {"zh": "../zh-etalon.html", "en": "../en-etalon.html"}},
         {"label": "ChemRxiv", "href": "https://chemrxiv.org/doi/full/10.26434/chemrxiv.15011490/v1"},
         {"label": "DOI", "href": "https://doi.org/10.26434/chemrxiv.15011490/v1"},
         {"label": "GitHub", "href": "https://github.com/AIB001/ETALON"}
