@@ -23,14 +23,15 @@ body.reading{background-image:radial-gradient(ellipse at 12% 0%,#ffffff55,transp
 .read-progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:20;background:transparent;pointer-events:none}
 .read-progress span{display:block;height:100%;width:100%;background:var(--accent);transform:scaleX(0);transform-origin:left center}
 .book{display:grid;grid-template-columns:minmax(0,1fr);gap:8px 48px;align-items:start;padding-bottom:24px}
-.toc{position:sticky;top:0;z-index:4;display:flex;gap:8px;margin:0;padding:10px 0;overflow-x:auto;background:color-mix(in srgb,var(--paper) 92%,transparent);border-bottom:1px solid var(--line);backdrop-filter:blur(8px)}
+.toc{position:sticky;top:3px;z-index:4;display:flex;gap:8px;margin:0;padding:10px 0;overflow-x:auto;background:color-mix(in srgb,var(--paper) 92%,transparent);border-bottom:1px solid var(--line);backdrop-filter:blur(8px)}
 .toc ol{display:flex;gap:8px;margin:0;padding:0;list-style:none}
 .toc a{display:inline-flex;align-items:center;min-height:36px;padding:6px 12px;border-radius:100px;color:var(--muted);font-size:13px;white-space:nowrap;background:var(--surface)}
 .toc a[aria-current="true"],.toc a:hover{color:var(--ink);background:var(--panel)}
 .chapter{max-width:42rem}
 .chapter .page-heading{display:block;min-height:0;border:0;padding-top:36px}
 .chapter .lead{font-size:1.2rem;line-height:1.85;color:var(--ink);max-width:40rem}
-.chapter h2{font:500 1.45rem/1.45 var(--sans);letter-spacing:-.02em;margin:2.4rem 0 .8rem;scroll-margin-top:5.5rem}
+.chapter h2{font:500 1.45rem/1.45 var(--sans);letter-spacing:-.02em;margin:2.4rem 0 .8rem}
+.chapter>section[id]{scroll-margin-top:5.5rem}
 .chapter h3{font:500 1.05rem/1.5 var(--sans);margin:1.4rem 0 .4rem}
 .chapter p,.chapter li{font-size:1.05rem;line-height:2;color:var(--ink)}
 .chapter p{margin:0 0 1.15rem}
@@ -44,11 +45,15 @@ html[lang=en] .chapter p,html[lang=en] .chapter li{line-height:1.8}
 .map{display:grid;gap:12px}
 .map-core{margin:0;justify-self:center;padding:12px 18px;border-radius:100px;background:var(--accent);color:var(--accent-ink);font-size:14px}
 .map ul,.flow{display:grid;gap:10px;margin:0;padding:0;list-style:none}
-.map li,.flow li,.track{margin:0;padding:14px 16px;border:1px solid var(--line);border-radius:14px;background:var(--paper);color:var(--ink);font-size:15px;line-height:1.55}
+.chapter .map-core{margin:0;font-size:14px;line-height:1.4}
+.chapter .map ul,.chapter ol.flow{margin:0;padding:0;list-style:none}
+.chapter .map li,.chapter .flow li,.chapter .track{margin:0;padding:14px 16px;border:1px solid var(--line);border-radius:14px;background:var(--paper);color:var(--ink);font-size:15px;line-height:1.55}
+.chapter .flow li::marker{content:none}
+html[lang=en] .chapter .map-core,html[lang=en] .chapter .track,html[lang=en] .chapter .map li,html[lang=en] .chapter .flow li{line-height:1.55}
 .track small,.flow small{display:block;margin-top:4px;color:var(--muted);font-size:12px;letter-spacing:.04em}
 .tracks{display:grid;gap:10px;margin-bottom:14px}
 .flow{counter-reset:step}
-.flow li{position:relative;padding-left:42px}
+.chapter .flow li{position:relative;padding-left:42px}
 .flow li::before{position:absolute;left:16px;top:14px;counter-increment:step;content:counter(step);font:italic 16px var(--serif);color:var(--accent)}
 .source-note a{color:var(--accent)}
 .limit{margin:1.4rem 0 1.6rem;padding:16px 18px;border-left:2px solid var(--accent);background:var(--panel);border-radius:0 14px 14px 0}
@@ -68,10 +73,11 @@ html[data-theme=dark] .plate,html[data-theme=dark] .contents a{border-color:var(
 .toc{position:sticky;top:28px;flex-direction:column;margin:28px 0 0;padding:0;overflow:visible;background:transparent;border:0;backdrop-filter:none}
 .toc ol{flex-direction:column}
 .toc a{white-space:normal;border-radius:12px;background:transparent;padding:8px 10px}
-.chapter h2{scroll-margin-top:1.5rem}
+.chapter>section[id]{scroll-margin-top:1.75rem}
 .tracks,.map ul{grid-template-columns:1fr 1fr}
 .flow{grid-template-columns:1fr 1fr}
 }
+@media(max-width:979px){.book{display:block}}
 @media(max-width:760px){
 .toc{margin:0;padding:8px 0}
 .plate{padding:16px}
