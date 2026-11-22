@@ -29,6 +29,8 @@ The placeholder passphrase is `change-me`.
 
 Public pages are hand-written HTML. The dashboard does not fill them. When a fact changes, update both languages:
 
+- `zh-metamaterials.html` and `en-metamaterials.html`
+- `zh-dmgc.html` and `en-dmgc.html`
 - `zh-projects.html` and `en-projects.html`
 - `zh-reports.html` and `en-reports.html`
 - `zh-ideas.html` and `en-ideas.html`
@@ -36,6 +38,8 @@ Public pages are hand-written HTML. The dashboard does not fill them. When a fac
 - the status line on `zh-index.html` and `en-index.html`
 
 Keep a claim tied to a link that opens. The copy checked on 10 November 2026 used the ChemRxiv record for ETALON (DOI `10.26434/chemrxiv.15011490/v1`, posted 2 November 2026, not peer reviewed) and the public repositories under `zx070326-hash` and `AIB001`.
+
+The two chapters added on 22 November 2026 are direction only. Metamaterials names four theoretical threads and says they are unpublished and not experimentally validated. DMGC names three problems from the public Discovered Materials list and the preregister, seal, evaluate, revise order. Do not add numbers, candidate systems, sealed checks, or links to private repositories.
 
 `awm-site` is a fork of `Ephemeral6/awm-site`. Its public commits are from the upstream author, so it is not listed as a personal project.
 

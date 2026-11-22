@@ -35,8 +35,8 @@
       checked: "Checked",
       missing: "Could not read data.json. From the repository root, run python3 -m http.server and open /dashboard/. Opening the file directly will not work.",
       empty: "Nothing in this section.",
-      vis: { public: "Public", "private-placeholder": "Placeholder" },
-      status: { preprint: "Preprint", paused: "Paused", demo: "Demo", notes: "Notes", unset: "Unset", placeholder: "Placeholder" }
+      vis: { public: "Public", "private-placeholder": "Placeholder", notes: "Notes" },
+      status: { preprint: "Preprint", paused: "Paused", demo: "Demo", notes: "Notes", ongoing: "In progress", unset: "Unset", placeholder: "Placeholder" }
     },
     zh: {
       htmlLang: "zh-CN",
@@ -68,8 +68,8 @@
       checked: "已核对",
       missing: "读不到 data.json。请在仓库根目录运行 python3 -m http.server，再打开 /dashboard/。不要直接双击文件。",
       empty: "这一栏还是空的。",
-      vis: { public: "公开", "private-placeholder": "占位" },
-      status: { preprint: "预印本", paused: "暂停", demo: "演示", notes: "笔记", unset: "未标", placeholder: "占位" }
+      vis: { public: "公开", "private-placeholder": "占位", notes: "笔记" },
+      status: { preprint: "预印本", paused: "暂停", demo: "演示", notes: "笔记", ongoing: "进行中", unset: "未标", placeholder: "占位" }
     }
   };
 
@@ -161,12 +161,16 @@
     var row = document.createElement("div");
     row.className = "card-links";
     (links || []).forEach(function (item) {
-      if (!item || !item.href || !/^https:\/\//.test(item.href)) return;
+      var href = item && item.href;
+      if (href && typeof href === "object") href = href[lang] || href.en || href.zh || "";
+      if (!href || !/^(https:\/\/|\.\.\/[a-z0-9./_-]+)$/i.test(href)) return;
       var a = document.createElement("a");
-      a.href = item.href;
-      a.target = "_blank";
-      a.rel = "noopener noreferrer";
-      a.textContent = item.label || item.href;
+      a.href = href;
+      if (/^https:\/\//.test(href)) {
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+      }
+      a.textContent = item.label || href;
       row.appendChild(a);
     });
     return row;

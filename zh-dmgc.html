@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>DMGC 材料大挑战 — alienation</title>
+<meta name="description" content="Discovered Materials 公开挑战里的三条：界面热输运、界面电学，以及交换关联泛函的速度与精度。进行中的计算笔记，不是实验，也不是已验证的解答。">
+<meta property="og:title" content="DMGC 材料大挑战 — alienation">
+<meta property="og:description" content="三条公开难题的阅读笔记。没有提交结果，没有新的实验数据。">
+<meta property="og:type" content="article">
+<link rel="icon" href="assets-favicon.svg" type="image/svg+xml">
+<script src="assets-theme.js"></script>
+<link rel="stylesheet" href="assets-style.css">
+</head>
+<body class="reading" data-reading>
+<a class="skip" href="#main">跳转到主要内容</a>
+<div class="site">
+<header>
+<a class="wordmark" href="zh-index.html">alienation<span class="brand-dot">.</span></a>
+<nav aria-label="主导航"><a href="zh-ideas.html">想法</a><a aria-current="page" href="zh-projects.html">项目</a><a href="zh-reports.html">技术报告</a><a href="zh-about.html">关于</a></nav>
+<div class="controls">
+<a class="lang" href="en-dmgc.html" lang="en" aria-label="Read this page in English">EN</a>
+<button class="theme" type="button" aria-label="切换明暗主题" title="切换明暗主题" hidden><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5" stroke="currentColor" stroke-width="1.5"/></svg></button>
+</div>
+</header>
+<main id="main">
+<div class="book">
+<nav class="toc" aria-label="本章目录">
+<ol>
+<li><a href="#question">问题</a></li>
+<li><a href="#tracks">三条题</a></li>
+<li><a href="#method">方法</a></li>
+<li><a href="#stage">阶段</a></li>
+<li><a href="#limit">局限</a></li>
+</ol>
+</nav>
+<article class="chapter">
+<div class="page-heading">
+<p class="eyebrow">CHAPTER / 进行中</p>
+<h1>DMGC，材料大挑战</h1>
+<p class="lead">Discovered Materials 把几道老的材料问题公开出来，标成还没解决、但可以对答案。我在看其中三条。这一章解释题目和我怎样自查，不报告分数。</p>
+</div>
+<section id="question">
+<h2>问题</h2>
+<p>大挑战的页面自己写着：这些是材料科学里放了很久、被人反复研究、仍然开放的问题。2026 年 11 月 22 日我打开公开列表时，下面三条都标着 Open。</p>
+<p>公开列表一共五道题。我没有在跟超导那一道，也没有在跟「用光调控材料」那一道。下面只谈我正在写笔记的三条。</p>
+<p class="card-links"><a href="https://discoveredmaterials.com/grand-challenges/">公开题目列表</a><a href="https://discoveredmaterials.com/grand-challenges/official-rules">规则</a></p>
+</section>
+<section id="tracks">
+<h2>三条题</h2>
+<figure class="plate">
+<div class="tracks">
+<p class="track">P05 · 界面热输运<small>固体界面上，热怎样过去</small></p>
+<p class="track">P02 · 界面电学<small>工艺历史怎样变成界面的电学性质</small></p>
+<p class="track">P03 · 速度与精度<small>交换关联泛函能不能又准又便宜</small></p>
+</div>
+<ol class="flow">
+<li>预注册<small>先写下要检验的说法</small></li>
+<li>封存<small>先不看对照</small></li>
+<li>评估<small>用事先分开的检验来看</small></li>
+<li>修订<small>改说法，或者把它搁下</small></li>
+</ol>
+<figcaption>上排是三道公开题。下排是自查的顺序。图上没有分数，封存里的内容也不在这里。</figcaption>
+</figure>
+<h3>P05，界面上的热</h3>
+<p>固体碰在一起的地方，热不一定过得去。器件想省电、少发热，就得明白这个界面。公开题要的是能预测的理解，不是再引用一句「界面很重要」。我的笔记是计算和阅读，不是新测的热导数据。</p>
+<h3>P02，工艺留下的电学</h3>
+<p>半导体界面的电学性质，不是一块材料天生就有的数。它和怎么生长、怎么冷却、怎么退火有关。题目问的是：只给工艺历史，能不能把后来的电学性质预测出来。预测如果换一种工艺就垮，这个模型就不能算站住。</p>
+<h3>P03，又快又准</h3>
+<p>量子化学里，算得准的办法往往很慢。交换关联泛函是密度泛函理论里用来补上电子之间相互作用的那一块。这条题问：反应能、过渡态、电子转移，能不能在比现在低很多的计算代价下仍然算得准。准和快如果只能二选一，这道题就还没过去。</p>
+</section>
+<section id="method">
+<h2>方法</h2>
+<p>顺序写在图里。先把说法写下来，这是预注册。再封存，避免一边看结果一边改口。然后才评估。评估不过，就修订，或者明确搁下。</p>
+<p>已经有计算模型对不上，被搁下了。还留着的模型也没有定论。搁下的是哪一个、差了多少，这里不写。否则这一页就变成还没准备公开的结果表。</p>
+</section>
+<section id="stage">
+<h2>现在到哪</h2>
+<p>笔记写到 2026 年 11 月，三条都还在改。这是理论和计算，加上对公开文献的阅读。不是我新做的实验，也不是已经提交、被接受的解答。</p>
+<p>计算失败和实验失败不是一回事。一次计算对不上，只说明这个模型或这次设置站不住。它不能被写成「材料本身不行」，也不能被写成「实验已经证实」。</p>
+</section>
+<section id="limit">
+<h2>这一章不能当成什么</h2>
+<aside class="limit"><p>不能当成获奖、突破，或者某组界面、某个泛函已经胜出。题目来自公开页面。我自己的角色只是：这三条的笔记是我在写的。数值、被封存的预测和具体模型都不在这一章里。</p></aside>
+</section>
+<nav class="chapter-turn" aria-label="前后章">
+<a href="zh-metamaterials.html">← 上一章</a>
+<a href="zh-projects.html">目录 →</a>
+</nav>
+</article>
+</div>
+</main>
+<footer>
+<div><a class="footer-brand" href="zh-index.html">alienation.</a><p>想法与实践，持续书写。</p></div>
+<div class="footer-right"><span>© 2026 alienation</span><div class="legal"><a href="dashboard/" title="个人记事。页面仍是公开的，口令只是一层轻量门。" rel="nofollow">个人</a></div><a href="en-dmgc.html" lang="en">English edition <span aria-hidden="true">↗</span></a></div>
+</footer>
+</div>
+<script src="assets-app.js" defer></script>
+</body>
+</html>

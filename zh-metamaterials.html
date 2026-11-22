@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>超材料与波动调控 — alienation</title>
+<meta name="description" content="四条还在进行的理论笔记：片上无磁光隔离、弹性层合极限、时变系统的反应瓶颈，以及宽带非互易热辐射。没有公开实验，也没有数值。">
+<meta property="og:title" content="超材料与波动调控 — alienation">
+<meta property="og:description" content="四条理论笔记的方向说明。未发表，无实验验证。">
+<meta property="og:type" content="article">
+<link rel="icon" href="assets-favicon.svg" type="image/svg+xml">
+<script src="assets-theme.js"></script>
+<link rel="stylesheet" href="assets-style.css">
+</head>
+<body class="reading" data-reading>
+<a class="skip" href="#main">跳转到主要内容</a>
+<div class="site">
+<header>
+<a class="wordmark" href="zh-index.html">alienation<span class="brand-dot">.</span></a>
+<nav aria-label="主导航"><a href="zh-ideas.html">想法</a><a aria-current="page" href="zh-projects.html">项目</a><a href="zh-reports.html">技术报告</a><a href="zh-about.html">关于</a></nav>
+<div class="controls">
+<a class="lang" href="en-metamaterials.html" lang="en" aria-label="Read this page in English">EN</a>
+<button class="theme" type="button" aria-label="切换明暗主题" title="切换明暗主题" hidden><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5" stroke="currentColor" stroke-width="1.5"/></svg></button>
+</div>
+</header>
+<main id="main">
+<div class="book">
+<nav class="toc" aria-label="本章目录">
+<ol>
+<li><a href="#question">问题</a></li>
+<li><a href="#map">四条线</a></li>
+<li><a href="#method">方法</a></li>
+<li><a href="#stage">阶段</a></li>
+<li><a href="#limit">局限</a></li>
+</ol>
+</nav>
+<article class="chapter">
+<div class="page-heading">
+<p class="eyebrow">CHAPTER / 进行中</p>
+<h1>超材料与波动调控</h1>
+<p class="lead">四条还在写的理论笔记。它们问的是同一类事情：波在人造结构里，怎样被挡住、放行，或者只允许一个方向。这一章只讲方向，不讲数。</p>
+</div>
+<section id="question">
+<h2>问题</h2>
+<p>超材料是人排出来的结构。排列本身可以让波走出和均匀材料不一样的路。我关心的不是再做一个器件样品，而是这些路有没有走不到的地方。</p>
+<p>四条线都还在理论里，计算只用来核对想法。没有一篇可以引用的定稿，也没有我自己做完的实验。</p>
+</section>
+<section id="map">
+<h2>四条线</h2>
+<figure class="plate">
+<div class="map">
+<p class="map-core">波动调控</p>
+<ul>
+<li>片上无磁光隔离<small>不用磁铁，光还能不能尽量只走一个方向</small></li>
+<li>弹性层合的极限<small>一层层叠起来的弹性体，等效性质能推到哪里</small></li>
+<li>时变系统的反应瓶颈<small>材料本身还在随时间变化时，响应会在哪里慢下来</small></li>
+<li>宽带非互易热辐射<small>热辐射的方向差别，能不能铺在一段较宽的频率上</small></li>
+</ul>
+</div>
+<figcaption>图只标出四条线的名字。没有轴，没有数据，也没有「哪一条已经赢了」。</figcaption>
+</figure>
+<h3>片上、不用磁铁的光隔离</h3>
+<p>光通常来回都能走。隔离是让它尽量只走一个方向。实验室里常见的办法要用磁铁。芯片上不方便放磁铁，所以这条线问：没有磁光材料时，隔离还能做到哪一步，代价是什么。代价可能是带宽、损耗，或者必须额外驱动。具体的界还不能写在这里。</p>
+<h3>弹性层合的极限</h3>
+<p>把软硬不同的层叠在一起，整体会像一种新的弹性材料。层数和叠法可以变。这条线问的是，这种「看起来像一种材料」的性质，有没有层合到不了的地方。它是弹性理论里的问题，不是一块已经做好的样品。</p>
+<h3>时变系统里的反应瓶颈</h3>
+<p>如果材料的性质还在随时间变，系统的反应不会无限变快，也不会在所有频率上同时听话。瓶颈指的就是它会在哪里慢下来，或者干脆做不到。笔记把「做得到」和「做不到」分开记。做不到的理由如果只是一次没算完，不能当成证明。</p>
+<h3>宽带非互易热辐射</h3>
+<p>热的物体自己会发出电磁波。非互易是说，发出和吸收可以不对称。如果这种不对称只出现在很窄的一段频率上，用处有限。这条线问：不对称能不能铺开，铺开时会碰到什么限制。依据应当来自电磁理论和热的基本账，而不是把某篇论文的结论直接拿来当答案。</p>
+</section>
+<section id="method">
+<h2>方法</h2>
+<p>先把问题写成可以否决的说法。再分开两条账：一条记构造，也就是某种做法确实做得到；另一条记界限，也就是在写明的前提下做不到。计算用来区分这两种说法，不代替推导。</p>
+<p>有些检验会先封存，等说法写完再打开对照。封存里的内容、候选结构和数值，这一章都不放。</p>
+</section>
+<section id="stage">
+<h2>现在到哪</h2>
+<p>四条线都还开着，写到 2026 年 11 月，中间改过好几轮，也搁下过一些走不通的路。搁下不等于已经证明了最终答案。没有公开的实验验证，也没有可引用的论文。</p>
+<p>项目页上另有一份光热超材料的静态计算报告，状态是暂停，页面自己写明还不能拿去加工。那一份和这一章不是同一件事。</p>
+</section>
+<section id="limit">
+<h2>这一章不能当成什么</h2>
+<aside class="limit"><p>不能当成突破、获奖、样品已经做成，或者某个数值已经成立。图和正文只说明我在看哪四类问题，以及笔记还停在理论与计算。</p></aside>
+</section>
+<nav class="chapter-turn" aria-label="前后章">
+<a href="zh-projects.html">← 目录</a>
+<a href="zh-dmgc.html">下一章 · DMGC →</a>
+</nav>
+</article>
+</div>
+</main>
+<footer>
+<div><a class="footer-brand" href="zh-index.html">alienation.</a><p>想法与实践，持续书写。</p></div>
+<div class="footer-right"><span>© 2026 alienation</span><div class="legal"><a href="dashboard/" title="个人记事。页面仍是公开的，口令只是一层轻量门。" rel="nofollow">个人</a></div><a href="en-metamaterials.html" lang="en">English edition <span aria-hidden="true">↗</span></a></div>
+</footer>
+</div>
+<script src="assets-app.js" defer></script>
+</body>
+</html>

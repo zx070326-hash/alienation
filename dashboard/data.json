@@ -1,11 +1,51 @@
 {
-  "updated": "2026-11-10",
+  "updated": "2026-11-22",
   "note": "Edit this file. Array order is display order. Public pages do not read it; update zh-*.html and en-*.html when a public fact changes. verified:false means the row is a placeholder, not a fact.",
   "now": {
-    "zh": "请改掉这段。截至 2026-11-10，公开记录里能核对的是：ETALON 预印本已经挂在 ChemRxiv，光热超材料页面是一份暂停中的静态报告。这不是本周日程。",
-    "en": "Replace this paragraph. As of 10 November 2026 the public record shows the ETALON preprint on ChemRxiv, and a paused photothermal-metamaterial report on GitHub Pages. This is a bookmark, not a log of the week."
+    "zh": "请改掉这段。截至 2026-11-22，札记里新写了两章：超材料与波动调控，以及 DMGC 的三条公开题。两章都只写方向，不写数值。ETALON 仍是未评审的预印本。这不是本周日程。",
+    "en": "Replace this paragraph. As of 22 November 2026 the notebook has two new chapters: metamaterials and wave control, and three public DMGC problems. Both chapters give direction only, not numbers. ETALON is still an unreviewed preprint. This is not a log of the week."
   },
   "projects": [
+    {
+      "name": {
+        "zh": "超材料与波动调控",
+        "en": "Metamaterials and wave control"
+      },
+      "visibility": "notes",
+      "status": "ongoing",
+      "priority": "",
+      "verified": true,
+      "summary": {
+        "zh": "四条理论笔记：片上无磁光隔离、弹性层合极限、时变系统的反应瓶颈、宽带非互易热辐射。未发表，无公开实验。数值和封存内容不写在这里。",
+        "en": "Four theoretical notes: magnet-free on-chip isolation, elastic laminate limits, time-varying bottlenecks, and broadband nonreciprocal thermal radiation. Unpublished, with no public experiment. Numbers and sealed checks are not stored here."
+      },
+      "next": {
+        "zh": "未写。要记下一件实事，改这里。",
+        "en": "Not set. Write the next real action here."
+      },
+      "links": [
+        {"label": "Chapter", "href": {"zh": "../zh-metamaterials.html", "en": "../en-metamaterials.html"}}
+      ]
+    },
+    {
+      "name": "DMGC",
+      "visibility": "notes",
+      "status": "ongoing",
+      "priority": "",
+      "verified": true,
+      "summary": {
+        "zh": "公开挑战里的 P05 界面热输运、P02 界面电学、P03 泛函速度与精度。顺序是预注册、封存、评估、修订。有模型已搁置，其余未定。不是新实验，也没有提交成绩。",
+        "en": "Public-challenge notes on P05 interface heat, P02 interface electronics, and P03 functional speed versus accuracy. The order is preregister, seal, evaluate, revise. Some models are set aside; the rest are unsettled. Not a new experiment and not a submitted score."
+      },
+      "next": {
+        "zh": "未写。要记下一件实事，改这里。",
+        "en": "Not set. Write the next real action here."
+      },
+      "links": [
+        {"label": "Chapter", "href": {"zh": "../zh-dmgc.html", "en": "../en-dmgc.html"}},
+        {"label": "Public list", "href": "https://discoveredmaterials.com/grand-challenges/"}
+      ]
+    },
     {
       "name": "ETALON",
       "visibility": "public",
