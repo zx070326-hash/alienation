@@ -39,7 +39,7 @@ if (reading) {
     span.style.transform = `scaleX(${max > 0 ? Math.min(1, root.scrollTop / max) : 0})`;
     let current = sections[0];
     for (const section of sections) {
-      if (section.getBoundingClientRect().top <= 140) current = section;
+      if (section.getBoundingClientRect().top <= 160) current = section;
     }
     for (const link of links) {
       const on = current && link.getAttribute('href') === `#${current.id}`;
@@ -53,11 +53,22 @@ if (reading) {
 
 const themeButton = document.querySelector('.theme');
 if (themeButton) {
+  const sunIcon = `<svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 2.5v2m0 15v2M2.5 12h2m15 0h2M5.3 5.3l1.4 1.4m10.6 10.6 1.4 1.4M5.3 18.7l1.4-1.4m10.6-10.6 1.4-1.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>`;
+  const moonIcon = `<svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>`;
+  const mq = matchMedia('(prefers-color-scheme: dark)');
+  const getTheme = () => document.documentElement.dataset.theme || (mq.matches ? 'dark' : 'light');
+  const syncIcon = () => {
+    const isDark = getTheme() === 'dark';
+    themeButton.innerHTML = isDark ? sunIcon : moonIcon;
+    themeButton.setAttribute('aria-pressed', String(isDark));
+  };
   themeButton.hidden = false;
+  syncIcon();
+  mq.addEventListener('change', syncIcon);
   themeButton.addEventListener('click', () => {
-    const current = document.documentElement.dataset.theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-    const next = current === 'dark' ? 'light' : 'dark';
+    const next = getTheme() === 'dark' ? 'light' : 'dark';
     document.documentElement.dataset.theme = next;
     try { localStorage.setItem('alienation-theme', next); } catch (_) {}
+    syncIcon();
   });
 }
