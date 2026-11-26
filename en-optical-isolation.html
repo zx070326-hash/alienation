@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>What Currency Buys Bandwidth for an Optical One-Way Street? — alienation</title>
+  <meta name="description" content="An interactive technical essay on linear nonreciprocal optical isolators: the A* threshold between lumped and distributed regimes, loss-port delay, and the 1/ξ² vs 1/ξ loss floor.">
+  <meta property="og:title" content="What Currency Buys Bandwidth for an Optical One-Way Street? — alienation">
+  <meta property="og:description" content="Two interactive physics labs unpacking the bandwidth currency, regime threshold, and colocated loss floor of nonreciprocal optical isolators.">
+  <meta property="og:type" content="article">
+  <link rel="icon" href="assets-favicon.svg" type="image/svg+xml">
+  <script src="assets-theme.js"></script>
+  <link rel="stylesheet" href="assets-style.css">
+</head>
+<body class="reading" data-reading>
+  <a class="skip" href="#main">Skip to main content</a>
+  <div class="site">
+    <header>
+      <a class="wordmark" href="en-index.html">alienation<span class="brand-dot">.</span></a>
+      <nav aria-label="Main navigation">
+        <a href="en-ideas.html">Ideas</a>
+        <a href="en-projects.html">Projects</a>
+        <a aria-current="page" href="en-reports.html">Reports</a>
+        <a href="en-about.html">About</a>
+      </nav>
+      <div class="controls">
+        <a class="lang" href="zh-optical-isolation.html" lang="zh" aria-label="阅读本页中文版">中文</a>
+        <button class="theme" type="button" aria-label="Toggle light and dark theme" title="Toggle light and dark theme" hidden>
+          <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 2.5v2m0 15v2M2.5 12h2m15 0h2M5.3 5.3l1.4 1.4m10.6 10.6 1.4 1.4M5.3 18.7l1.4-1.4m10.6-10.6 1.4-1.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <main id="main">
+      <div class="book">
+        <nav class="toc" aria-label="Table of contents">
+          <ol>
+            <li><a href="#plain">In one minute</a></li>
+            <li><a href="#currency">The currency</a></li>
+            <li><a href="#regimes">Interactive lab 1</a></li>
+            <li><a href="#delay-insight">Loss-port delay</a></li>
+            <li><a href="#loss-floor">Interactive lab 2</a></li>
+            <li><a href="#takeaways">Takeaways</a></li>
+            <li><a href="#limit">Scope &amp; limits</a></li>
+          </ol>
+        </nav>
+
+        <article class="chapter">
+          <div class="page-heading">
+            <p class="eyebrow">ESSAY · 26 NOV 2026 · INTERACTIVE TECHNICAL NOTE</p>
+            <h1>What Currency Buys Bandwidth for an Optical One-Way Street?</h1>
+            <p class="lead">On-chip lasers hate back-reflections. Building a broadband, magnet-free optical isolator turns out to be a surprisingly crisp accounting problem: once you know which currency physics actually accepts, the whole design space snaps into focus.</p>
+          </div>
+
+          <section id="plain">
+            <aside class="brief" aria-label="Plain-language summary">
+              <p class="brief-label"><svg class="icon" aria-hidden="true"><use href="assets-icons.svg#i-help"/></svg>In one minute</p>
+              <p class="brief-one">Nonreciprocal bandwidth can only be bought with two currencies: <strong>mode count N</strong> in the lumped recirculating regime, or <strong>single-pass action crossing a hard threshold A*</strong> in the distributed regime. Once you cross A*, dispersion and colocated loss take over.</p>
+              <div class="brief-grid">
+                <div>
+                  <h2>Why it matters</h2>
+                  <p>Ordinary optics obeys <abbr class="term" title="If light passes from A to B with a given efficiency, it passes from B back to A identically">reciprocity</abbr>. Breaking symmetry cleanly across a wide band without bulky magnets requires knowing whether your current design is starved of modes, action, or material quality.</p>
+                </div>
+                <div>
+                  <h2>What is inside</h2>
+                  <p>Three concise mental models plus <strong>two live interactive labs</strong> letting you drag action, mode count, isolation, and material figure of merit ξ to see how the fundamental bounds behave.</p>
+                </div>
+              </div>
+            </aside>
+
+            <div class="stat-row" aria-label="Three structural anchors">
+              <div class="stat">
+                <b>B ≤ c* · N · Ω</b>
+                <span>Lumped recirculating ceiling: bandwidth scales with mode count N times the TR-odd frequency Ω (ideal constant c* = 2).</span>
+              </div>
+              <div class="stat">
+                <b>A ≥ A*</b>
+                <span>Above the single-pass action threshold, nonreciprocity itself stops capping bandwidth; dispersion and loss become the bottleneck.</span>
+              </div>
+              <div class="stat">
+                <b>0.888 / ξ² dB</b>
+                <span>Universal insertion-loss floor at 20 dB isolation from colocated loss — compared to 3.19 / ξ dB for a symmetric MZI.</span>
+              </div>
+            </div>
+          </section>
+
+          <section id="currency">
+            <h2>1. The real currency is frequency-wise Ω × dwell time</h2>
+            <p>A tempting guess is that broadband nonreciprocity is simply capped by a material’s total spectral weight. Careful accounting shows something sharper: at each frequency ω, the angular separation Φ(ω) between the scattering matrix S and its transpose Sᵀ is bounded by the <strong>time-reversal-odd frequency Ω multiplied by the active dwell time trQₐ</strong>.</p>
+
+            <div class="insight-card">
+              <h3>An intuitive mental model: earning a phase split</h3>
+              <p>Picture forward and backward pulses racing in opposite directions along an active track. Ω is the differential rate at which the medium separates them, and trQₐ is how long light stays inside. If a single pass is too short (single-pass action A &lt; A*), light must loop inside a resonator to accumulate enough split — immediately trading away bandwidth.</p>
+            </div>
+
+            <p>That single threshold <strong>A*</strong> splits every linear nonreciprocal isolator into two fundamentally different regimes:</p>
+            <ul>
+              <li><strong>Lumped / recirculating regime (A &lt; A*)</strong>: one pass is not enough, so light must recirculate. Bandwidth is bought strictly with <strong>mode count N</strong> via <code>B ≤ c* · N · Ω</code>.</li>
+              <li><strong>Single-pass / distributed regime (A ≥ A*)</strong>: one pass earns the full split. Nonreciprocal physics itself no longer caps bandwidth; instead, <strong>nonreciprocal dispersion, reciprocal dispersion, and colocated loss</strong> take over.</li>
+            </ul>
+          </section>
+
+          <section id="regimes">
+            <h2>2. Explore the threshold: lumped vs. distributed</h2>
+            <p>Drag the sliders or switch presets below to watch an isolator cross <strong>A / A* = 1</strong>, and see how tightening target isolation (IX) compresses the dimensionless bandwidth constant <code>c*</code>.</p>
+
+            <figure class="interactive-lab" id="lab-regime">
+              <div class="lab-header">
+                <p class="lab-title">Interactive Lab 1 · Two Currencies of Bandwidth (Lumped vs. Distributed)</p>
+                <span class="lab-badge" id="regime-badge">Lumped regime · A &lt; A*</span>
+              </div>
+
+              <div class="lab-tabs" role="group" aria-label="Device presets">
+                <button class="lab-tab" type="button" data-preset="cavity" aria-pressed="true">Single cavity (A=0.35, N=1)</button>
+                <button class="lab-tab" type="button" data-preset="delay" aria-pressed="false">Multimode delay (A=0.68, N=5)</button>
+                <button class="lab-tab" type="button" data-preset="dist" aria-pressed="false">Distributed pass (A=1.40, N=4)</button>
+              </div>
+
+              <div class="lab-stage">
+                <svg id="regime-svg" viewBox="0 0 640 245" role="img" aria-label="Interactive schematic of lumped vs distributed optical isolation regimes">
+                  <text x="20" y="24" font-size="11.5" font-weight="600" fill="var(--subtle)" letter-spacing="0.08em">STRUCTURE MECHANISM</text>
+                  <rect x="18" y="36" width="314" height="192" rx="12" fill="var(--plate-bg)" stroke="var(--line)"/>
+                  <line x1="36" y1="132" x2="314" y2="132" stroke="var(--line-strong)" stroke-width="3" stroke-linecap="round"/>
+                  <path d="M44 114 H102" stroke="var(--accent)" stroke-width="2.2" stroke-linecap="round"/>
+                  <path d="M96 109 L105 114 L96 119" fill="none" stroke="var(--accent)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <text x="44" y="104" font-size="11" font-weight="600" fill="var(--accent)">Forward S₂₁ passes</text>
+                  <path d="M304 152 H242" stroke="var(--muted)" stroke-width="2" stroke-dasharray="5 4" stroke-linecap="round"/>
+                  <path d="M248 147 L239 152 L248 157" fill="none" stroke="var(--muted)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <text x="218" y="172" font-size="11" fill="var(--muted)">Backward S₁₂ blocked</text>
+                  <g id="regime-structure"></g>
+                  <text id="regime-struct-caption" x="175" y="214" text-anchor="middle" font-size="11.5" fill="var(--muted)"></text>
+
+                  <text x="354" y="24" font-size="11.5" font-weight="600" fill="var(--subtle)" letter-spacing="0.08em">BANDWIDTH CEILING (B / Ω)</text>
+                  <rect x="352" y="36" width="270" height="192" rx="12" fill="var(--plate-bg)" stroke="var(--line)"/>
+                  <rect x="487" y="48" width="123" height="146" fill="var(--accent-soft)" rx="4"/>
+                  <line x1="487" y1="48" x2="487" y2="194" stroke="var(--accent)" stroke-width="1.6" stroke-dasharray="4 3"/>
+                  <text x="487" y="45" text-anchor="middle" font-size="10.5" font-weight="600" fill="var(--accent)">Threshold A = A*</text>
+                  <line x1="376" y1="194" x2="610" y2="194" stroke="var(--line-strong)" stroke-width="1.2"/>
+                  <line x1="376" y1="48" x2="376" y2="194" stroke="var(--line-strong)" stroke-width="1.2"/>
+                  <text x="430" y="212" text-anchor="middle" font-size="10.5" fill="var(--muted)">Lumped (A &lt; A*)</text>
+                  <text x="552" y="212" text-anchor="middle" font-size="10.5" fill="var(--accent)">Distributed (A ≥ A*)</text>
+                  <line id="regime-ceiling-line" x1="376" y1="150" x2="487" y2="150" stroke="var(--accent)" stroke-width="2.4"/>
+                  <path id="regime-open-curve" d="M487 150 Q525 110 598 62" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="5 4"/>
+                  <text id="regime-cap-label" x="382" y="143" font-size="10.5" font-weight="600" fill="var(--ink)"></text>
+                  <circle id="regime-dot-halo" cx="420" cy="150" r="11" fill="var(--accent)" opacity="0.18"/>
+                  <circle id="regime-dot" cx="420" cy="150" r="5.5" fill="var(--accent)" stroke="var(--surface)" stroke-width="2"/>
+                </svg>
+              </div>
+
+              <div class="lab-controls">
+                <div class="lab-control">
+                  <label for="sl-action">Single-pass action A / A* <output id="out-action">0.35</output></label>
+                  <input id="sl-action" type="range" min="0.15" max="1.90" step="0.05" value="0.35">
+                </div>
+                <div class="lab-control">
+                  <label for="sl-modes">Mode count N <output id="out-modes">1</output></label>
+                  <input id="sl-modes" type="range" min="1" max="8" step="1" value="1">
+                </div>
+                <div class="lab-control">
+                  <label for="sl-ix">Target isolation IX <output id="out-ix">20 dB</output></label>
+                  <input id="sl-ix" type="range" min="12" max="35" step="1" value="20">
+                </div>
+              </div>
+
+              <div class="lab-readouts">
+                <div class="lab-readout is-highlight">
+                  <span>Active regime</span>
+                  <strong id="rd-regime">Lumped recirculating</strong>
+                </div>
+                <div class="lab-readout">
+                  <span>Lossless constant c* (T=1)</span>
+                  <strong id="rd-cstar">2.14</strong>
+                </div>
+                <div class="lab-readout">
+                  <span>Bandwidth ceiling B / Ω</span>
+                  <strong id="rd-bw">2.14 Ω</strong>
+                </div>
+                <div class="lab-readout">
+                  <span>Primary bottleneck</span>
+                  <strong id="rd-bottleneck">Modes N × Ω</strong>
+                </div>
+              </div>
+
+              <figcaption><span class="fig-no">Interactive Fig. 1</span>The lossless tight constant follows <code>c* = π / arccos(IX⁻¹/²)</code> (at T = 1). Below A/A* = 1, adding modes lifts the bandwidth ceiling linearly. Crossing A/A* = 1 lifts the nonreciprocity ceiling itself; the distributed trend line is schematic.</figcaption>
+            </figure>
+          </section>
+
+          <section id="delay-insight">
+            <h2>3. A counter-intuitive lever: give the loss port delay</h2>
+            <p>In a lumped isolator, it feels natural to dump backward power into an instantaneous absorber and forget about it. Yet exact network bounds reveal a surprising structural rule:</p>
+            <ul>
+              <li>For every <strong>FIR network whose loss port carries zero delay</strong> (even without port symmetry), per-mode bandwidth cannot exceed the flat two-stage ceiling <code>c_flat</code>.</li>
+              <li><strong>To surpass <code>c_flat</code>, the loss port itself must carry delay</strong> — temporarily routing rejected backward energy through a delayed auxiliary path frees phase budget for flatter forward transmission.</li>
+            </ul>
+            <p>This also explains why cascading single-mode magneto-optic rings hits a hard <code>2Ω</code> roof: approaching the true ceiling requires multimode delay-line arms rather than pushing a single cavity’s Q-factor ever higher.</p>
+          </section>
+
+          <section id="loss-floor">
+            <h2>4. The unavoidable tax: 1/ξ² vs. 1/ξ under colocated loss</h2>
+            <p>Even if dispersion is tamed and A exceeds A*, real nonreciprocal media almost always carry colocated optical loss. Let <strong>ξ</strong> denote the dimensionless ratio of nonreciprocal strength to colocated loss. Every passive linear device — regardless of nanostructure complexity — obeys a universal inequality:</p>
+            <p style="font-family:var(--mono);font-size:0.95rem;padding:12px 16px;background:var(--panel);border-radius:12px;border:1px solid var(--line);">|S₂₁ − S₁₂|² ≤ 4 ξ² (1 − |S₂₁|²)(1 − |S₁₂|²)</p>
+            <p>At 20 dB isolation, this sets an absolute insertion-loss floor scaling as <strong>0.888 / ξ² dB</strong>, whereas a standard symmetric-dwell Mach–Zehnder interferometer (MZI) decays only linearly as <strong>3.19 / ξ dB</strong>. Drag ξ below to feel how dramatic that quadratic-versus-linear gap becomes in realistic material regimes.</p>
+
+            <figure class="interactive-lab" id="lab-loss">
+              <div class="lab-header">
+                <p class="lab-title">Interactive Lab 2 · Colocated Loss Floor (Universal 1/ξ² vs. Symmetric MZI 1/ξ)</p>
+                <span class="lab-badge" id="loss-badge">20 dB isolation</span>
+              </div>
+
+              <div class="lab-stage">
+                <svg id="loss-svg" viewBox="0 0 640 270" role="img" aria-label="Interactive plot comparing universal 1/xi^2 insertion loss floor against symmetric MZI 1/xi floor">
+                  <rect x="68" y="28" width="540" height="196" rx="8" fill="var(--plate-bg)" stroke="var(--line)"/>
+                  <g id="loss-grid" stroke="var(--line)" stroke-width="1" stroke-dasharray="3 3"></g>
+                  <path id="loss-forbidden" fill="var(--accent)" opacity="0.11"/>
+                  <path id="loss-curve-mzi" fill="none" stroke="var(--muted)" stroke-width="2.2" stroke-dasharray="6 4"/>
+                  <path id="loss-curve-uni" fill="none" stroke="var(--accent)" stroke-width="2.8"/>
+                  <line id="loss-cursor" x1="250" y1="28" x2="250" y2="224" stroke="var(--line-strong)" stroke-width="1.2" stroke-dasharray="3 3"/>
+                  <line id="loss-gap-line" x1="250" y1="100" x2="250" y2="180" stroke="var(--accent)" stroke-width="2.2"/>
+                  <circle id="loss-dot-mzi" cx="250" cy="100" r="5" fill="var(--muted)" stroke="var(--surface)" stroke-width="2"/>
+                  <circle id="loss-dot-uni" cx="250" cy="180" r="5.5" fill="var(--accent)" stroke="var(--surface)" stroke-width="2"/>
+                  <text x="338" y="256" text-anchor="middle" font-size="11.5" fill="var(--muted)">Material nonreciprocal quality factor ξ (higher = lower colocated loss)</text>
+                  <text x="20" y="130" text-anchor="middle" font-size="11.5" fill="var(--muted)" transform="rotate(-90 20 130)">Min. Insertion Loss (dB)</text>
+                  <g transform="translate(362, 42)">
+                    <rect x="0" y="0" width="234" height="54" rx="8" fill="var(--surface)" stroke="var(--line)" opacity="0.94"/>
+                    <line x1="12" y1="18" x2="36" y2="18" stroke="var(--accent)" stroke-width="2.8"/>
+                    <text x="44" y="22" font-size="11" font-weight="600" fill="var(--ink)">Universal floor (~ 1/ξ²)</text>
+                    <line x1="12" y1="38" x2="36" y2="38" stroke="var(--muted)" stroke-width="2.2" stroke-dasharray="5 3"/>
+                    <text x="44" y="42" font-size="11" fill="var(--muted)">Symmetric MZI floor (~ 1/ξ)</text>
+                  </g>
+                  <g id="loss-ticks" font-size="10.5" fill="var(--subtle)"></g>
+                </svg>
+              </div>
+
+              <div class="lab-controls">
+                <div class="lab-control">
+                  <label for="sl-xi">Material quality factor ξ <output id="out-xi">5.0</output></label>
+                  <input id="sl-xi" type="range" min="1.2" max="15.0" step="0.2" value="5.0">
+                </div>
+                <div class="lab-control">
+                  <label for="sl-loss-ix">Target isolation IX <output id="out-loss-ix">20 dB</output></label>
+                  <input id="sl-loss-ix" type="range" min="10" max="35" step="1" value="20">
+                </div>
+              </div>
+
+              <div class="lab-readouts">
+                <div class="lab-readout is-highlight">
+                  <span>Universal min. IL</span>
+                  <strong id="rd-il-uni">0.036 dB</strong>
+                </div>
+                <div class="lab-readout">
+                  <span>Max forward T</span>
+                  <strong id="rd-tmax">99.2%</strong>
+                </div>
+                <div class="lab-readout">
+                  <span>Symmetric MZI floor</span>
+                  <strong id="rd-il-mzi">0.638 dB</strong>
+                </div>
+                <div class="lab-readout">
+                  <span>Topology saving factor</span>
+                  <strong id="rd-ratio">17.7×</strong>
+                </div>
+              </div>
+
+              <figcaption><span class="fig-no">Interactive Fig. 2</span>The solid curve solves <code>|S₂₁ − S₁₂|² ≤ 4ξ²(1−|S₂₁|²)(1−|S₁₂|²)</code> exactly in the browser (shaded area is physically forbidden for any passive device). The dashed curve tracks the <code>1/ξ</code> symmetric-dwell interferometer scaling (3.19 dB/ξ at 20 dB).</figcaption>
+            </figure>
+          </section>
+
+          <section id="takeaways">
+            <h2>5. Three lessons that travel beyond photonics</h2>
+            <ol>
+              <li><strong>Identify the true currency before tuning parameters</strong>: Knowing whether you sit below or above A* immediately tells you whether to buy more modes or switch architecture.</li>
+              <li><strong>Boundary ports are design degrees of freedom</strong>: Treating the loss port as a delayed degree of freedom — rather than an instantaneous dump — unlocks bandwidth beyond <code>c_flat</code>.</li>
+              <li><strong>Architecture can change the scaling law itself (1/ξ → 1/ξ²)</strong>: You do not always need a 10× better material to cut loss by an order of magnitude; breaking a symmetric-dwell assumption can do it structurally.</li>
+            </ol>
+          </section>
+
+          <section id="limit">
+            <h2>Scope and limitations</h2>
+            <aside class="limit">
+              <p>This essay is an accessible, interactive technical note distilled from ongoing theoretical work on nonreciprocal wave control. It is not a peer-reviewed journal paper and omits unpublished candidate material recipes or fabricated device claims. The distributed-regime trend in Fig. 1 is schematic; the universal loss curve in Fig. 2 is computed live from the passive scattering inequality stated above.</p>
+            </aside>
+          </section>
+
+          <nav class="chapter-turn" aria-label="Related pages">
+            <a href="en-metamaterials.html">← Metamaterials overview</a>
+            <a href="en-reports.html">All reports →</a>
+          </nav>
+        </article>
+      </div>
+    </main>
+
+    <footer>
+      <div>
+        <a class="footer-brand" href="en-index.html">alienation.</a>
+        <p>Thoughts and work, an ongoing notebook.</p>
+      </div>
+      <div class="footer-right">
+        <span>© 2026 alienation</span>
+        <div class="legal"><a href="dashboard/" title="Personal notes. The page stays public. The passphrase is only a light gate." rel="nofollow">Me</a></div>
+        <a href="zh-optical-isolation.html" lang="zh">中文版 <span aria-hidden="true">↗</span></a>
+      </div>
+    </footer>
+  </div>
+
+  <script src="assets-app.js" defer></script>
+  <script>
+  (function () {
+    const slA = document.getElementById('sl-action');
+    const slN = document.getElementById('sl-modes');
+    const slIX = document.getElementById('sl-ix');
+    const outA = document.getElementById('out-action');
+    const outN = document.getElementById('out-modes');
+    const outIX = document.getElementById('out-ix');
+    const badge = document.getElementById('regime-badge');
+    const rdRegime = document.getElementById('rd-regime');
+    const rdC = document.getElementById('rd-cstar');
+    const rdBW = document.getElementById('rd-bw');
+    const rdBot = document.getElementById('rd-bottleneck');
+    const structG = document.getElementById('regime-structure');
+    const structCap = document.getElementById('regime-struct-caption');
+    const ceilLine = document.getElementById('regime-ceiling-line');
+    const openCurve = document.getElementById('regime-open-curve');
+    const capLabel = document.getElementById('regime-cap-label');
+    const dot = document.getElementById('regime-dot');
+    const dotHalo = document.getElementById('regime-dot-halo');
+    const tabs = [...document.querySelectorAll('#lab-regime .lab-tab')];
+
+    const presets = {
+      cavity: { a: 0.35, n: 1, ix: 20 },
+      delay: { a: 0.68, n: 5, ix: 20 },
+      dist: { a: 1.40, n: 4, ix: 20 }
+    };
+
+    function updateRegime() {
+      const a = parseFloat(slA.value);
+      const n = parseInt(slN.value, 10);
+      const ixDb = parseInt(slIX.value, 10);
+      outA.textContent = a.toFixed(2);
+      outN.textContent = String(n);
+      outIX.textContent = ixDb + ' dB';
+
+      const ixLin = Math.pow(10, ixDb / 10);
+      const cStar = Math.PI / Math.acos(1 / Math.sqrt(ixLin));
+      const bwNorm = cStar * n;
+      const isDist = a >= 1.0;
+
+      rdC.textContent = cStar.toFixed(2);
+      if (isDist) {
+        badge.textContent = 'Distributed regime · A ≥ A*';
+        rdRegime.textContent = 'Single-pass distributed';
+        rdBW.textContent = 'NR cap lifted';
+        rdBot.textContent = 'Dispersion + loss';
+      } else {
+        badge.textContent = 'Lumped regime · A < A*';
+        rdRegime.textContent = 'Lumped recirculating';
+        rdBW.textContent = bwNorm.toFixed(1) + ' Ω';
+        rdBot.textContent = 'Modes N × Ω';
+      }
+
+      let markup = '';
+      if (!isDist) {
+        const count = Math.min(n, 6);
+        const spacing = Math.min(34, 165 / Math.max(count, 1));
+        const startX = 175 - ((count - 1) * spacing) / 2;
+        for (let i = 0; i < count; i++) {
+          const cx = startX + i * spacing;
+          markup += `<circle cx="${cx.toFixed(1)}" cy="92" r="14" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.8"/>`;
+          markup += `<path d="M${(cx - 5).toFixed(1)} 86 A7 7 0 1 1 ${(cx - 5).toFixed(1)} 98" fill="none" stroke="var(--accent)" stroke-width="1.3"/>`;
+        }
+        if (n > 6) {
+          markup += `<text x="175" y="64" text-anchor="middle" font-size="10.5" font-weight="600" fill="var(--accent)">×${n} coupled modes</text>`;
+        }
+        structCap.textContent = n === 1
+          ? 'Single cavity: light loops for phase, capped near 2Ω'
+          : `Multimode (N=${n}): mode count buys bandwidth linearly`;
+      } else {
+        const segW = Math.min(180, 90 + (a - 1) * 90);
+        const sx = 175 - segW / 2;
+        markup += `<rect x="${sx.toFixed(1)}" y="116" width="${segW.toFixed(1)}" height="32" rx="8" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/>`;
+        for (let k = 1; k <= 5; k++) {
+          const px = sx + (segW * k) / 6;
+          markup += `<line x1="${px.toFixed(1)}" y1="122" x2="${px.toFixed(1)}" y2="142" stroke="var(--accent)" stroke-width="1.2" opacity="0.55"/>`;
+        }
+        markup += `<text x="175" y="96" text-anchor="middle" font-size="11" font-weight="600" fill="var(--accent)">Single-pass strip (A / A* = ${a.toFixed(2)})</text>`;
+        structCap.textContent = 'One pass suffices: dispersion & colocated loss dominate';
+      }
+      structG.innerHTML = markup;
+
+      const xMin = 376, xMax = 610;
+      const yBot = 194, yTop = 52;
+      const clampedBw = Math.min(bwNorm, 20);
+      const yCeil = yBot - (clampedBw / 22) * (yBot - yTop);
+      ceilLine.setAttribute('y1', yCeil.toFixed(1));
+      ceilLine.setAttribute('y2', yCeil.toFixed(1));
+      openCurve.setAttribute('d', `M487 ${yCeil.toFixed(1)} Q535 ${(yCeil - 26).toFixed(1)} 602 ${Math.max(yTop + 4, yCeil - 62).toFixed(1)}`);
+      capLabel.setAttribute('y', Math.max(62, yCeil - 7).toFixed(1));
+      capLabel.textContent = `Cap ${bwNorm.toFixed(1)}Ω`;
+
+      const dotX = xMin + (a / 2.0) * (xMax - xMin);
+      const dotY = isDist ? Math.max(yTop + 8, yCeil - (a - 1.0) * 58) : yCeil;
+      dot.setAttribute('cx', dotX.toFixed(1));
+      dot.setAttribute('cy', dotY.toFixed(1));
+      dotHalo.setAttribute('cx', dotX.toFixed(1));
+      dotHalo.setAttribute('cy', dotY.toFixed(1));
+    }
+
+    tabs.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const p = presets[btn.dataset.preset];
+        if (!p) return;
+        slA.value = p.a;
+        slN.value = p.n;
+        slIX.value = p.ix;
+        tabs.forEach((t) => t.setAttribute('aria-pressed', String(t === btn)));
+        updateRegime();
+      });
+    });
+
+    [slA, slN, slIX].forEach((el) => el.addEventListener('input', () => {
+      tabs.forEach((t) => t.setAttribute('aria-pressed', 'false'));
+      updateRegime();
+    }));
+    updateRegime();
+
+    const slXi = document.getElementById('sl-xi');
+    const slLossIx = document.getElementById('sl-loss-ix');
+    const outXi = document.getElementById('out-xi');
+    const outLossIx = document.getElementById('out-loss-ix');
+    const lossBadge = document.getElementById('loss-badge');
+    const rdIlUni = document.getElementById('rd-il-uni');
+    const rdTmax = document.getElementById('rd-tmax');
+    const rdIlMzi = document.getElementById('rd-il-mzi');
+    const rdRatio = document.getElementById('rd-ratio');
+    const gridG = document.getElementById('loss-grid');
+    const ticksG = document.getElementById('loss-ticks');
+    const pathForb = document.getElementById('loss-forbidden');
+    const pathUni = document.getElementById('loss-curve-uni');
+    const pathMzi = document.getElementById('loss-curve-mzi');
+    const cursorLine = document.getElementById('loss-cursor');
+    const gapLine = document.getElementById('loss-gap-line');
+    const dotUni = document.getElementById('loss-dot-uni');
+    const dotMzi = document.getElementById('loss-dot-mzi');
+
+    function universalIlDb(xi, ixLin) {
+      const alpha = 1 / ixLin;
+      const diffSq = Math.pow(1 - Math.sqrt(alpha), 2);
+      const q = 4 * xi * xi;
+      const A = q * alpha;
+      const B = -(q * (1 + alpha) + diffSq);
+      const C = q;
+      const disc = Math.max(0, B * B - 4 * A * C);
+      const T = (-B - Math.sqrt(disc)) / (2 * A);
+      const clampedT = Math.min(0.999999, Math.max(1e-6, T));
+      return { il: -10 * Math.log10(clampedT), T: clampedT };
+    }
+
+    function mziIlDb(xi, ixLin) {
+      const refFactor = (1 - Math.sqrt(1 / ixLin)) / 0.9;
+      return (3.19 * Math.max(0.55, refFactor)) / xi;
+    }
+
+    function updateLoss() {
+      const xi = parseFloat(slXi.value);
+      const ixDb = parseInt(slLossIx.value, 10);
+      const ixLin = Math.pow(10, ixDb / 10);
+      outXi.textContent = xi.toFixed(1);
+      outLossIx.textContent = ixDb + ' dB';
+      lossBadge.textContent = ixDb + ' dB isolation';
+
+      const x0 = 68, x1 = 608, yTop = 28, yBot = 224;
+      const xiMin = 1.0, xiMax = 15.0;
+      const yMaxDb = 3.5;
+
+      const mapX = (v) => x0 + ((v - xiMin) / (xiMax - xiMin)) * (x1 - x0);
+      const mapY = (db) => yBot - (Math.min(yMaxDb, db) / yMaxDb) * (yBot - yTop);
+
+      let gHtml = '', tHtml = '';
+      [0, 1, 2, 3].forEach((db) => {
+        const y = mapY(db);
+        gHtml += `<line x1="${x0}" y1="${y.toFixed(1)}" x2="${x1}" y2="${y.toFixed(1)}"/>`;
+        tHtml += `<text x="${x0 - 8}" y="${(y + 3.5).toFixed(1)}" text-anchor="end">${db} dB</text>`;
+      });
+      [1, 3, 5, 8, 11, 15].forEach((xv) => {
+        const x = mapX(xv);
+        tHtml += `<text x="${x.toFixed(1)}" y="${yBot + 16}" text-anchor="middle">${xv}</text>`;
+      });
+      gridG.innerHTML = gHtml;
+      ticksG.innerHTML = tHtml;
+
+      let dUni = '', dMzi = '', dForb = '';
+      const steps = 80;
+      for (let i = 0; i <= steps; i++) {
+        const xv = xiMin + (i / steps) * (xiMax - xiMin);
+        const u = universalIlDb(xv, ixLin).il;
+        const m = mziIlDb(xv, ixLin);
+        const px = mapX(xv).toFixed(1);
+        const pyU = mapY(u).toFixed(1);
+        const pyM = mapY(m).toFixed(1);
+        dUni += (i === 0 ? 'M' : 'L') + px + ' ' + pyU + ' ';
+        dMzi += (i === 0 ? 'M' : 'L') + px + ' ' + pyM + ' ';
+        dForb += (i === 0 ? `M${px} ${yBot} L${px} ${pyU} ` : `L${px} ${pyU} `);
+      }
+      dForb += `L${x1} ${yBot} Z`;
+      pathUni.setAttribute('d', dUni);
+      pathMzi.setAttribute('d', dMzi);
+      pathForb.setAttribute('d', dForb);
+
+      const curUni = universalIlDb(xi, ixLin);
+      const curMzi = mziIlDb(xi, ixLin);
+      const cx = mapX(xi).toFixed(1);
+      const cyU = mapY(curUni.il).toFixed(1);
+      const cyM = mapY(curMzi).toFixed(1);
+
+      cursorLine.setAttribute('x1', cx);
+      cursorLine.setAttribute('x2', cx);
+      gapLine.setAttribute('x1', cx);
+      gapLine.setAttribute('x2', cx);
+      gapLine.setAttribute('y1', cyM);
+      gapLine.setAttribute('y2', cyU);
+      dotUni.setAttribute('cx', cx);
+      dotUni.setAttribute('cy', cyU);
+      dotMzi.setAttribute('cx', cx);
+      dotMzi.setAttribute('cy', cyM);
+
+      rdIlUni.textContent = curUni.il < 0.1 ? curUni.il.toFixed(3) + ' dB' : curUni.il.toFixed(2) + ' dB';
+      rdTmax.textContent = (curUni.T * 100).toFixed(1) + '%';
+      rdIlMzi.textContent = curMzi.toFixed(2) + ' dB';
+      rdRatio.textContent = (curMzi / Math.max(curUni.il, 1e-4)).toFixed(1) + '×';
+    }
+
+    [slXi, slLossIx].forEach((el) => el.addEventListener('input', updateLoss));
+    updateLoss();
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,582 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>光的单行道，究竟要用什么「货币」来买带宽？ — alienation</title>
+  <meta name="description" content="一篇带交互式物理可视化的技术随笔：线性非互易光隔离器的带宽极限、A* 阈值划分的两种机制，以及共址损耗下 1/ξ² 与 1/ξ 的结构分野。">
+  <meta property="og:title" content="光的单行道，究竟要用什么「货币」来买带宽？ — alienation">
+  <meta property="og:description" content="用两个可交互物理实验，直观拆解非互易光隔离器的带宽货币、阈值相变与共址损耗地板。">
+  <meta property="og:type" content="article">
+  <link rel="icon" href="assets-favicon.svg" type="image/svg+xml">
+  <script src="assets-theme.js"></script>
+  <link rel="stylesheet" href="assets-style.css">
+</head>
+<body class="reading" data-reading>
+  <a class="skip" href="#main">跳转到主要内容</a>
+  <div class="site">
+    <header>
+      <a class="wordmark" href="zh-index.html">alienation<span class="brand-dot">.</span></a>
+      <nav aria-label="主导航">
+        <a href="zh-ideas.html">想法</a>
+        <a href="zh-projects.html">项目</a>
+        <a aria-current="page" href="zh-reports.html">技术报告</a>
+        <a href="zh-about.html">关于</a>
+      </nav>
+      <div class="controls">
+        <a class="lang" href="en-optical-isolation.html" lang="en" aria-label="Read this article in English">EN</a>
+        <button class="theme" type="button" aria-label="切换明暗主题" title="切换明暗主题" hidden>
+          <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 2.5v2m0 15v2M2.5 12h2m15 0h2M5.3 5.3l1.4 1.4m10.6 10.6 1.4 1.4M5.3 18.7l1.4-1.4m10.6-10.6 1.4-1.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <main id="main">
+      <div class="book">
+        <nav class="toc" aria-label="本文目录">
+          <ol>
+            <li><a href="#plain">一句话看懂</a></li>
+            <li><a href="#currency">带宽的货币</a></li>
+            <li><a href="#regimes">交互实验一</a></li>
+            <li><a href="#delay-insight">反直觉的结构洞见</a></li>
+            <li><a href="#loss-floor">交互实验二</a></li>
+            <li><a href="#takeaways">可迁移的启发</a></li>
+            <li><a href="#limit">边界与说明</a></li>
+          </ol>
+        </nav>
+
+        <article class="chapter">
+          <div class="page-heading">
+            <p class="eyebrow">ESSAY · 2026-11-26 · 交互式技术笔记</p>
+            <h1>光的单行道，究竟要用什么「货币」来买带宽？</h1>
+            <p class="lead">激光芯片极度讨厌反射回来的光。要替光修一条「去路畅通、来路截停」的单行道，人们最常问的问题是：去掉笨重的磁铁后，带宽上限究竟卡在哪里？答案比「堆高 Q 值」有趣得多。</p>
+          </div>
+
+          <section id="plain">
+            <aside class="brief" aria-label="给非本行读者">
+              <p class="brief-label"><svg class="icon" aria-hidden="true"><use href="assets-icons.svg#i-help"/></svg>一句话看懂</p>
+              <p class="brief-one">非互易光隔离器的带宽不是凭空换来的——它只能用两种「货币」去买：要么靠<strong>更多模式（模数 N）</strong>在集总区换带宽，要么靠<strong>单程作用量跨过阈值 A*</strong>直接跳出非互易瓶颈；一旦跳出，真正接管天花板的是色散与共址损耗。</p>
+              <div class="brief-grid">
+                <div>
+                  <h2>为什么这个问题值得停下来看</h2>
+                  <p>常规光学遵循<abbr class="term" title="如果光从 A 能传到 B，反过来从 B 也能以同样效率传回 A">互易性</abbr>：你看得见镜子里的我，我就看得见你。想要打破对称又不牺牲带宽与透射率，就像一边踩油门一边要求急转弯——必须先搞清楚物理到底在收哪一笔税。</p>
+                </div>
+                <div>
+                  <h2>这篇文章的重点</h2>
+                  <p>不罗列冗长推导，而是用<strong>三个核心心智模型</strong>加上<strong>两个可以直接拖动的交互实验</strong>，把「逐频货币」「阈值相变」「损耗口延迟」和「1/ξ² 损耗地板」直观展现在眼前。</p>
+                </div>
+              </div>
+            </aside>
+
+            <div class="stat-row" aria-label="核心物理尺度的三个锚点">
+              <div class="stat">
+                <b>B ≤ c* · N · Ω</b>
+                <span>集总再循环区的带宽上限：模数 N 与材料时间反演奇频率 Ω 的乘积，理想极限常数 c* = 2。</span>
+              </div>
+              <div class="stat">
+                <b>A ≥ A*</b>
+                <span>单程作用量跨过阈值后，非互易物理本身不再卡住带宽，瓶颈转交给色散与共址损耗。</span>
+              </div>
+              <div class="stat">
+                <b>0.888 / ξ² dB</b>
+                <span>20 dB 隔离度下由共址损耗决定的普适插损地板——而对称干涉仪（MZI）只落在 3.19 / ξ dB。</span>
+              </div>
+            </div>
+          </section>
+
+          <section id="currency">
+            <h2>1. 打破对称的真正「货币」，不是谱权重</h2>
+            <p>直觉很容易把人带偏：既然光隔离需要「把正向和反向的相位或幅值拉开」，那是不是只要材料里有足够大的总色散或谱权重，带宽就能无限拉宽？</p>
+            <p>仔细算账后会发现，物理认的不是笼统的谱权重，而是<strong>逐频的「时间反演奇频率 Ω」乘以「光在活性区里的驻留时间 trQₐ」</strong>：在每一个工作频率 ω 上，散射矩阵 S 与其转置 Sᵀ 之间能转开的角度 Φ(ω)，都受制于光在非互易活性区里的累积作用量。</p>
+
+            <div class="insight-card">
+              <h3>一个好记的类比：给两束相向而行的光「赚取时差」</h3>
+              <p>想象正向光和反向光像两辆在特制赛道上对向行驶的车。材料自带的 Ω 是「每毫秒能拉开的差速」，驻留时间 trQₐ 是「车在赛道上待了多久」。如果单程赛道太短（单程作用量 A &lt; A*），车只跑一趟根本拉不开足够差距，就只能靠<strong>绕圈再循环（谐振腔）</strong>硬凑时间——可一旦绕圈，谐振峰就会变窄，带宽立刻缩水。</p>
+            </div>
+
+            <p>于是整个线性非互易器件的设计空间，自然被一道硬阈值 <strong>A*</strong> 切成了两个截然不同的世界：</p>
+            <ul>
+              <li><strong>集总 / 再循环区（A &lt; A*）</strong>：单趟不够，必须再循环。此时想把带宽做宽，唯一的硬通货是<strong>模数 N</strong>（例如多级延迟线、耦合模式阵列），服从 <code>B ≤ c* · N · Ω</code>。</li>
+              <li><strong>单程 / 分布式区（A ≥ A*）</strong>：单趟本身就能把正向与反向彻底分开，再也不需要靠绕圈硬凑。从这一刻起，非互易机制本身不再限制带宽；真正开始卡脖子的变成三样现实因素：<strong>非互易色散、互易色散、共址损耗</strong>。</li>
+            </ul>
+          </section>
+
+          <section id="regimes">
+            <h2>2. 动手试一试：跨过 A* 阈值会发生什么？</h2>
+            <p>拖动下面的滑块，切换「单谐振腔」「多模延迟线」和「分布式行波」三种典型构造，观察器件如何跨过 <strong>A / A* = 1</strong> 的相变边界，以及目标隔离度（IX）如何反向挤压可用带宽常数 <code>c*</code>。</p>
+
+            <figure class="interactive-lab" id="lab-regime">
+              <div class="lab-header">
+                <p class="lab-title">交互实验一 · 非互易带宽的两种货币（集总再循环 vs 单程分布式）</p>
+                <span class="lab-badge" id="regime-badge">集总再循环区 · A &lt; A*</span>
+              </div>
+
+              <div class="lab-tabs" role="group" aria-label="典型器件预设">
+                <button class="lab-tab" type="button" data-preset="cavity" aria-pressed="true">单谐振腔（A=0.35, N=1）</button>
+                <button class="lab-tab" type="button" data-preset="delay" aria-pressed="false">多模延迟线（A=0.68, N=5）</button>
+                <button class="lab-tab" type="button" data-preset="dist" aria-pressed="false">单程分布式（A=1.40, N=4）</button>
+              </div>
+
+              <div class="lab-stage">
+                <svg id="regime-svg" viewBox="0 0 640 245" role="img" aria-label="非互易光隔离器工作区动态示意图">
+                  <!-- Left panel: Physical Path Schematic -->
+                  <text x="20" y="24" font-size="11.5" font-weight="600" fill="var(--subtle)" letter-spacing="0.08em">STRUCTURE MECHANISM</text>
+                  <rect x="18" y="36" width="314" height="192" rx="12" fill="var(--plate-bg)" stroke="var(--line)"/>
+
+                  <!-- Waveguide bus -->
+                  <line x1="36" y1="132" x2="314" y2="132" stroke="var(--line-strong)" stroke-width="3" stroke-linecap="round"/>
+                  <!-- Forward arrow -->
+                  <path d="M44 114 H102" stroke="var(--accent)" stroke-width="2.2" stroke-linecap="round"/>
+                  <path d="M96 109 L105 114 L96 119" fill="none" stroke="var(--accent)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <text x="44" y="104" font-size="11" font-weight="600" fill="var(--accent)">正向 S₂₁ 通过</text>
+
+                  <!-- Backward arrow (blocked/attenuated) -->
+                  <path d="M304 152 H242" stroke="var(--muted)" stroke-width="2" stroke-dasharray="5 4" stroke-linecap="round"/>
+                  <path d="M248 147 L239 152 L248 157" fill="none" stroke="var(--muted)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <text x="228" y="172" font-size="11" fill="var(--muted)">反向 S₁₂ 阻断</text>
+
+                  <!-- Dynamic cavity/modes or distributed strip group -->
+                  <g id="regime-structure"></g>
+                  <text id="regime-struct-caption" x="175" y="214" text-anchor="middle" font-size="11.5" fill="var(--muted)"></text>
+
+                  <!-- Right panel: Regime Diagram (A/A* vs Normalized Bandwidth) -->
+                  <text x="354" y="24" font-size="11.5" font-weight="600" fill="var(--subtle)" letter-spacing="0.08em">BANDWIDTH CEILING (B / Ω)</text>
+                  <rect x="352" y="36" width="270" height="192" rx="12" fill="var(--plate-bg)" stroke="var(--line)"/>
+
+                  <!-- Threshold vertical line at A/A* = 1 (x = 487) -->
+                  <rect x="487" y="48" width="123" height="146" fill="var(--accent-soft)" rx="4"/>
+                  <line x1="487" y1="48" x2="487" y2="194" stroke="var(--accent)" stroke-width="1.6" stroke-dasharray="4 3"/>
+                  <text x="487" y="45" text-anchor="middle" font-size="10.5" font-weight="600" fill="var(--accent)">阈值 A = A*</text>
+
+                  <!-- Axes -->
+                  <line x1="376" y1="194" x2="610" y2="194" stroke="var(--line-strong)" stroke-width="1.2"/>
+                  <line x1="376" y1="48" x2="376" y2="194" stroke="var(--line-strong)" stroke-width="1.2"/>
+                  <text x="430" y="212" text-anchor="middle" font-size="10.5" fill="var(--muted)">集总区 (A &lt; A*)</text>
+                  <text x="552" y="212" text-anchor="middle" font-size="10.5" fill="var(--accent)">分布式区 (A ≥ A*)</text>
+
+                  <!-- Ceiling line in lumped regime + open arrow in distributed regime -->
+                  <line id="regime-ceiling-line" x1="376" y1="150" x2="487" y2="150" stroke="var(--accent)" stroke-width="2.4"/>
+                  <path id="regime-open-curve" d="M487 150 Q525 110 598 62" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="5 4"/>
+                  <text id="regime-cap-label" x="382" y="143" font-size="10.5" font-weight="600" fill="var(--ink)"></text>
+
+                  <!-- Current Operating Point -->
+                  <circle id="regime-dot-halo" cx="420" cy="150" r="11" fill="var(--accent)" opacity="0.18"/>
+                  <circle id="regime-dot" cx="420" cy="150" r="5.5" fill="var(--accent)" stroke="var(--surface)" stroke-width="2"/>
+                </svg>
+              </div>
+
+              <div class="lab-controls">
+                <div class="lab-control">
+                  <label for="sl-action">单程作用量 A / A* <output id="out-action">0.35</output></label>
+                  <input id="sl-action" type="range" min="0.15" max="1.90" step="0.05" value="0.35">
+                </div>
+                <div class="lab-control">
+                  <label for="sl-modes">器件模数 N <output id="out-modes">1</output></label>
+                  <input id="sl-modes" type="range" min="1" max="8" step="1" value="1">
+                </div>
+                <div class="lab-control">
+                  <label for="sl-ix">目标隔离度 IX <output id="out-ix">20 dB</output></label>
+                  <input id="sl-ix" type="range" min="12" max="35" step="1" value="20">
+                </div>
+              </div>
+
+              <div class="lab-readouts">
+                <div class="lab-readout is-highlight">
+                  <span>当前工作区</span>
+                  <strong id="rd-regime">集总再循环区</strong>
+                </div>
+                <div class="lab-readout">
+                  <span>无损紧常数 c* (T=1)</span>
+                  <strong id="rd-cstar">2.14</strong>
+                </div>
+                <div class="lab-readout">
+                  <span>带宽上限 B / Ω</span>
+                  <strong id="rd-bw">2.14 Ω</strong>
+                </div>
+                <div class="lab-readout">
+                  <span>主要物理瓶颈</span>
+                  <strong id="rd-bottleneck">模数 N × Ω</strong>
+                </div>
+              </div>
+
+              <figcaption><span class="fig-no">交互图 1</span>无损理想极限公式取自精确紧界 <code>c* = π / arccos(IX⁻¹/²)</code>（T = 1）。当单程作用量 A/A* &lt; 1 时，增加模数 N 线性抬升带宽天花板；跨过 A/A* = 1 后，非互易物理约束解除，限制转由色散与损耗主导（示意分布区走势）。</figcaption>
+            </figure>
+          </section>
+
+          <section id="delay-insight">
+            <h2>3. 一个反直觉的发现：想超车，得给「损耗口」加延迟</h2>
+            <p>在集总区里，工程师常常以为损耗口（或者用来吸收反向光的负载端口）越干净、越瞬时越好——最好反向光一过来就原地消失，不要带来多余的相位延迟。</p>
+            <p>但在严格的线性网络分析里，结果恰恰相反：</p>
+            <ul>
+              <li>对于一切<strong>损耗口无延迟的 FIR 网络</strong>（甚至不要求端口对称），每模带宽常数被严格锁死在平坦两级网络的上限 <code>c_flat</code> 以内。</li>
+              <li>换句话说：<strong>如果你想让器件的每模带宽突破 <code>c_flat</code>，损耗口本身就必须带有延迟</strong>——把反向能量先在辅助通路里「错峰暂存」再耗散掉，才能把宝贵的相位资源留给主通路的带宽平坦度。</li>
+            </ul>
+            <p>这也解释了为什么「拿一堆单模谐振环简单串联」往往撞在 <code>2Ω</code> 的墙上动弹不得：真正能摸到带宽天花板的，是把多模延迟线与合理损耗路径编织在一起的网络拓扑，而不是把单个腔体的 Q 值往死里拉。</p>
+          </section>
+
+          <section id="loss-floor">
+            <h2>4. 逃不掉的税：共址损耗下 1/ξ² 与 1/ξ 的分野</h2>
+            <p>就算把色散压平、单程作用量也跨过了 A*，真实材料里还有最后一位铁面裁判：<strong>共址损耗</strong>。几乎所有能打破时间反演对称的真实物理机制（磁光、电光调制、内禀反常霍尔等），在提供非互易耦合的同时，也会伴随能量耗散。</p>
+            <p>用一个无量纲材料品质因子 <strong>ξ</strong> 来衡量「非互易强度 / 伴随损耗」的比值。令人震撼的是，无论你用多复杂的微纳结构、超表面还是光子晶体，任意无源线性器件都必须服从一条普适不等式：</p>
+            <p style="font-family:var(--mono);font-size:0.95rem;padding:12px 16px;background:var(--panel);border-radius:12px;border:1px solid var(--line);">|S₂₁ − S₁₂|² ≤ 4 ξ² (1 − |S₂₁|²)(1 − |S₁₂|²)</p>
+            <p>这条公式直接锁死了最小插入损耗地板（在 20 dB 隔离度、大 ξ 极限下约为 <strong>0.888 / ξ² dB</strong>）。然而如果你采用最常见的对称驻留马赫-曾德尔干涉仪（MZI），插损却只能按 <strong>3.19 / ξ dB</strong> 缓慢下降——一个是平方衰减，一个是线性衰减。拖一拖下面的实验，马上能体会这两条曲线之间的鸿沟。</p>
+
+            <figure class="interactive-lab" id="lab-loss">
+              <div class="lab-header">
+                <p class="lab-title">交互实验二 · 共址损耗不可逾越曲线（普适地板 1/ξ² vs 对称 MZI 地板 1/ξ）</p>
+                <span class="lab-badge" id="loss-badge">20 dB 隔离度</span>
+              </div>
+
+              <div class="lab-stage">
+                <svg id="loss-svg" viewBox="0 0 640 270" role="img" aria-label="最小插入损耗随材料品质因子 xi 变化的对比曲线">
+                  <!-- Plot frame: x in [68, 608], y in [28, 224] -->
+                  <rect x="68" y="28" width="540" height="196" rx="8" fill="var(--plate-bg)" stroke="var(--line)"/>
+                  <!-- Horizontal grid lines -->
+                  <g id="loss-grid" stroke="var(--line)" stroke-width="1" stroke-dasharray="3 3"></g>
+                  <!-- Forbidden region under universal bound -->
+                  <path id="loss-forbidden" fill="var(--accent)" opacity="0.11"/>
+                  <!-- MZI curve (1/xi) -->
+                  <path id="loss-curve-mzi" fill="none" stroke="var(--muted)" stroke-width="2.2" stroke-dasharray="6 4"/>
+                  <!-- Universal curve (exact Theorem L) -->
+                  <path id="loss-curve-uni" fill="none" stroke="var(--accent)" stroke-width="2.8"/>
+
+                  <!-- Vertical cursor line at current xi -->
+                  <line id="loss-cursor" x1="250" y1="28" x2="250" y2="224" stroke="var(--line-strong)" stroke-width="1.2" stroke-dasharray="3 3"/>
+                  <!-- Gap connector -->
+                  <line id="loss-gap-line" x1="250" y1="100" x2="250" y2="180" stroke="var(--accent)" stroke-width="2.2"/>
+                  <circle id="loss-dot-mzi" cx="250" cy="100" r="5" fill="var(--muted)" stroke="var(--surface)" stroke-width="2"/>
+                  <circle id="loss-dot-uni" cx="250" cy="180" r="5.5" fill="var(--accent)" stroke="var(--surface)" stroke-width="2"/>
+
+                  <!-- Axis labels -->
+                  <text x="338" y="256" text-anchor="middle" font-size="11.5" fill="var(--muted)">材料非互易品质因子 ξ（越高代表单位非互易伴随的损耗越低）</text>
+                  <text x="20" y="130" text-anchor="middle" font-size="11.5" fill="var(--muted)" transform="rotate(-90 20 130)">最小插损 IL (dB)</text>
+
+                  <!-- Legend -->
+                  <g transform="translate(362, 42)">
+                    <rect x="0" y="0" width="234" height="54" rx="8" fill="var(--surface)" stroke="var(--line)" opacity="0.94"/>
+                    <line x1="12" y1="18" x2="36" y2="18" stroke="var(--accent)" stroke-width="2.8"/>
+                    <text x="44" y="22" font-size="11" font-weight="600" fill="var(--ink)">普适物理地板（~ 1/ξ²）</text>
+                    <line x1="12" y1="38" x2="36" y2="38" stroke="var(--muted)" stroke-width="2.2" stroke-dasharray="5 3"/>
+                    <text x="44" y="42" font-size="11" fill="var(--muted)">对称 MZI 干涉仪地板（~ 1/ξ）</text>
+                  </g>
+
+                  <!-- Y ticks & X ticks containers -->
+                  <g id="loss-ticks" font-size="10.5" fill="var(--subtle)"></g>
+                </svg>
+              </div>
+
+              <div class="lab-controls">
+                <div class="lab-control">
+                  <label for="sl-xi">材料品质因子 ξ <output id="out-xi">5.0</output></label>
+                  <input id="sl-xi" type="range" min="1.2" max="15.0" step="0.2" value="5.0">
+                </div>
+                <div class="lab-control">
+                  <label for="sl-loss-ix">目标隔离度 IX <output id="out-loss-ix">20 dB</output></label>
+                  <input id="sl-loss-ix" type="range" min="10" max="35" step="1" value="20">
+                </div>
+              </div>
+
+              <div class="lab-readouts">
+                <div class="lab-readout is-highlight">
+                  <span>普适最小插损 IL_min</span>
+                  <strong id="rd-il-uni">0.036 dB</strong>
+                </div>
+                <div class="lab-readout">
+                  <span>最高正向透射 T_max</span>
+                  <strong id="rd-tmax">99.2%</strong>
+                </div>
+                <div class="lab-readout">
+                  <span>对称 MZI 插损下限</span>
+                  <strong id="rd-il-mzi">0.638 dB</strong>
+                </div>
+                <div class="lab-readout">
+                  <span>结构优化可省倍率</span>
+                  <strong id="rd-ratio">17.7×</strong>
+                </div>
+              </div>
+
+              <figcaption><span class="fig-no">交互图 2</span>实线为普适不等式 <code>|S₂₁ − S₁₂|² ≤ 4ξ²(1−|S₂₁|²)(1−|S₁₂|²)</code> 的精确数值解（阴影区为任何无源结构都不可进入的物理禁区）；虚线为对称驻留干涉仪类的 <code>1/ξ</code> 标度律（20 dB 基准常数 3.19 dB）。在中等 ξ（如 ξ = 3–6）区间，单靠改变网络结构就能把损耗底线拉低一个数量级。</figcaption>
+            </figure>
+          </section>
+
+          <section id="takeaways">
+            <h2>5. 跳出光学：三条可以带走的工程启发</h2>
+            <p>即便你平时不做光子芯片，这组推导背后的思路也很有迁移价值：</p>
+            <ol>
+              <li><strong>先找到真正的「硬通货」，再谈优化</strong>：在没分清瓶颈是「模数」还是「单程作用量」之前，盲目调参往往只是在墙里打转。找到相变阈值 A*，能让你一眼判断当下该加资源还是换架构。</li>
+              <li><strong>边界条件本身就是设计自由度</strong>：很多人把「损耗端口」当成被动扔垃圾的出口，但恰恰是给这个出口引入延迟，才打开了突破 <code>c_flat</code> 的门。</li>
+              <li><strong>结构可以改写标度律（1/ξ → 1/ξ²）</strong>：材料短期内很难提升十倍，但从线性代价改写到平方代价，往往不需要新材料，只需要换掉默认对称的架构假设。</li>
+            </ol>
+          </section>
+
+          <section id="limit">
+            <h2>边界与说明</h2>
+            <aside class="limit">
+              <p>本文是一篇基于超材料与非互易波动理论笔记整理的<strong>概念科普与交互式技术随笔</strong>，并非同行评审期刊论文，也不包含未公开的实验样品或具体候选材料工艺参数。文中交互图 1 的分布区走势为原理示意，交互图 2 的普适曲线由文中给出的无源散射不等式在浏览器端实时精确求解。</p>
+            </aside>
+          </section>
+
+          <nav class="chapter-turn" aria-label="相关页面">
+            <a href="zh-metamaterials.html">← 超材料总览</a>
+            <a href="zh-reports.html">技术报告列表 →</a>
+          </nav>
+        </article>
+      </div>
+    </main>
+
+    <footer>
+      <div>
+        <a class="footer-brand" href="zh-index.html">alienation.</a>
+        <p>想法与实践，持续书写。</p>
+      </div>
+      <div class="footer-right">
+        <span>© 2026 alienation</span>
+        <div class="legal"><a href="dashboard/" title="个人记事。页面仍是公开的，口令只是一层轻量门。" rel="nofollow">个人</a></div>
+        <a href="en-optical-isolation.html" lang="en">English edition <span aria-hidden="true">↗</span></a>
+      </div>
+    </footer>
+  </div>
+
+  <script src="assets-app.js" defer></script>
+  <script>
+  (function () {
+    // --- Lab 1: Regime Explorer (A/A*, N, IX) ---
+    const slA = document.getElementById('sl-action');
+    const slN = document.getElementById('sl-modes');
+    const slIX = document.getElementById('sl-ix');
+    const outA = document.getElementById('out-action');
+    const outN = document.getElementById('out-modes');
+    const outIX = document.getElementById('out-ix');
+    const badge = document.getElementById('regime-badge');
+    const rdRegime = document.getElementById('rd-regime');
+    const rdC = document.getElementById('rd-cstar');
+    const rdBW = document.getElementById('rd-bw');
+    const rdBot = document.getElementById('rd-bottleneck');
+    const structG = document.getElementById('regime-structure');
+    const structCap = document.getElementById('regime-struct-caption');
+    const ceilLine = document.getElementById('regime-ceiling-line');
+    const openCurve = document.getElementById('regime-open-curve');
+    const capLabel = document.getElementById('regime-cap-label');
+    const dot = document.getElementById('regime-dot');
+    const dotHalo = document.getElementById('regime-dot-halo');
+    const tabs = [...document.querySelectorAll('#lab-regime .lab-tab')];
+
+    const presets = {
+      cavity: { a: 0.35, n: 1, ix: 20 },
+      delay: { a: 0.68, n: 5, ix: 20 },
+      dist: { a: 1.40, n: 4, ix: 20 }
+    };
+
+    function updateRegime() {
+      const a = parseFloat(slA.value);
+      const n = parseInt(slN.value, 10);
+      const ixDb = parseInt(slIX.value, 10);
+      outA.textContent = a.toFixed(2);
+      outN.textContent = String(n);
+      outIX.textContent = ixDb + ' dB';
+
+      const ixLin = Math.pow(10, ixDb / 10);
+      const cStar = Math.PI / Math.acos(1 / Math.sqrt(ixLin));
+      const bwNorm = cStar * n;
+      const isDist = a >= 1.0;
+
+      rdC.textContent = cStar.toFixed(2);
+      if (isDist) {
+        badge.textContent = '单程分布式区 · A ≥ A*';
+        rdRegime.textContent = '单程分布式区';
+        rdBW.textContent = '非互易上限解除';
+        rdBot.textContent = '色散 + 共址损耗';
+      } else {
+        badge.textContent = '集总再循环区 · A < A*';
+        rdRegime.textContent = '集总再循环区';
+        rdBW.textContent = bwNorm.toFixed(1) + ' Ω';
+        rdBot.textContent = '模数 N × Ω';
+      }
+
+      // Update left schematic
+      let markup = '';
+      if (!isDist) {
+        const count = Math.min(n, 6);
+        const spacing = Math.min(34, 165 / Math.max(count, 1));
+        const startX = 175 - ((count - 1) * spacing) / 2;
+        for (let i = 0; i < count; i++) {
+          const cx = startX + i * spacing;
+          markup += `<circle cx="${cx.toFixed(1)}" cy="92" r="14" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.8"/>`;
+          markup += `<path d="M${(cx - 5).toFixed(1)} 86 A7 7 0 1 1 ${(cx - 5).toFixed(1)} 98" fill="none" stroke="var(--accent)" stroke-width="1.3"/>`;
+        }
+        if (n > 6) {
+          markup += `<text x="175" y="64" text-anchor="middle" font-size="10.5" font-weight="600" fill="var(--accent)">×${n} 耦合模式</text>`;
+        }
+        structCap.textContent = n === 1
+          ? '单腔再循环：光绕圈攒相位，带宽被 2Ω 附近封顶'
+          : `多模再循环（N=${n}）：用模式数量线性买宽工作带`;
+      } else {
+        const segW = Math.min(180, 90 + (a - 1) * 90);
+        const sx = 175 - segW / 2;
+        markup += `<rect x="${sx.toFixed(1)}" y="116" width="${segW.toFixed(1)}" height="32" rx="8" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/>`;
+        for (let k = 1; k <= 5; k++) {
+          const px = sx + (segW * k) / 6;
+          markup += `<line x1="${px.toFixed(1)}" y1="122" x2="${px.toFixed(1)}" y2="142" stroke="var(--accent)" stroke-width="1.2" opacity="0.55"/>`;
+        }
+        markup += `<text x="175" y="96" text-anchor="middle" font-size="11" font-weight="600" fill="var(--accent)">单程行波作用区（A / A* = ${a.toFixed(2)}）</text>`;
+        structCap.textContent = '单趟即可拉开相移：无需谐振绕圈，色散与损耗接管瓶颈';
+      }
+      structG.innerHTML = markup;
+
+      // Update right diagram coordinates
+      const xMin = 376, xMax = 610; // A/A* in [0, 2]
+      const yBot = 194, yTop = 52;  // B/Omega in [0, 22]
+      const clampedBw = Math.min(bwNorm, 20);
+      const yCeil = yBot - (clampedBw / 22) * (yBot - yTop);
+      ceilLine.setAttribute('y1', yCeil.toFixed(1));
+      ceilLine.setAttribute('y2', yCeil.toFixed(1));
+      openCurve.setAttribute('d', `M487 ${yCeil.toFixed(1)} Q535 ${(yCeil - 26).toFixed(1)} 602 ${Math.max(yTop + 4, yCeil - 62).toFixed(1)}`);
+      capLabel.setAttribute('y', Math.max(62, yCeil - 7).toFixed(1));
+      capLabel.textContent = `上限 ${bwNorm.toFixed(1)}Ω`;
+
+      const dotX = xMin + (a / 2.0) * (xMax - xMin);
+      const dotY = isDist
+        ? Math.max(yTop + 8, yCeil - (a - 1.0) * 58)
+        : yCeil;
+      dot.setAttribute('cx', dotX.toFixed(1));
+      dot.setAttribute('cy', dotY.toFixed(1));
+      dotHalo.setAttribute('cx', dotX.toFixed(1));
+      dotHalo.setAttribute('cy', dotY.toFixed(1));
+    }
+
+    tabs.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const p = presets[btn.dataset.preset];
+        if (!p) return;
+        slA.value = p.a;
+        slN.value = p.n;
+        slIX.value = p.ix;
+        tabs.forEach((t) => t.setAttribute('aria-pressed', String(t === btn)));
+        updateRegime();
+      });
+    });
+
+    [slA, slN, slIX].forEach((el) => el.addEventListener('input', () => {
+      tabs.forEach((t) => t.setAttribute('aria-pressed', 'false'));
+      updateRegime();
+    }));
+    updateRegime();
+
+    // --- Lab 2: Colocated Loss Bound (Theorem L vs MZI 1/xi) ---
+    const slXi = document.getElementById('sl-xi');
+    const slLossIx = document.getElementById('sl-loss-ix');
+    const outXi = document.getElementById('out-xi');
+    const outLossIx = document.getElementById('out-loss-ix');
+    const lossBadge = document.getElementById('loss-badge');
+    const rdIlUni = document.getElementById('rd-il-uni');
+    const rdTmax = document.getElementById('rd-tmax');
+    const rdIlMzi = document.getElementById('rd-il-mzi');
+    const rdRatio = document.getElementById('rd-ratio');
+    const gridG = document.getElementById('loss-grid');
+    const ticksG = document.getElementById('loss-ticks');
+    const pathForb = document.getElementById('loss-forbidden');
+    const pathUni = document.getElementById('loss-curve-uni');
+    const pathMzi = document.getElementById('loss-curve-mzi');
+    const cursorLine = document.getElementById('loss-cursor');
+    const gapLine = document.getElementById('loss-gap-line');
+    const dotUni = document.getElementById('loss-dot-uni');
+    const dotMzi = document.getElementById('loss-dot-mzi');
+
+    // Exact closed-form solution of (t - r)^2 = 4 xi^2 (1 - t^2)(1 - r^2), r = t / sqrt(IX)
+    function universalIlDb(xi, ixLin) {
+      const alpha = 1 / ixLin;
+      const diffSq = Math.pow(1 - Math.sqrt(alpha), 2);
+      const q = 4 * xi * xi;
+      const A = q * alpha;
+      const B = -(q * (1 + alpha) + diffSq);
+      const C = q;
+      const disc = Math.max(0, B * B - 4 * A * C);
+      // Physical root T in (0, 1)
+      const T = (-B - Math.sqrt(disc)) / (2 * A);
+      const clampedT = Math.min(0.999999, Math.max(1e-6, T));
+      return { il: -10 * Math.log10(clampedT), T: clampedT };
+    }
+
+    // MZI symmetric-dwell floor: scales as K(IX)/xi, calibrated at 3.19 dB/xi for 20 dB
+    function mziIlDb(xi, ixLin) {
+      const refFactor = (1 - Math.sqrt(1 / ixLin)) / 0.9;
+      return (3.19 * Math.max(0.55, refFactor)) / xi;
+    }
+
+    function updateLoss() {
+      const xi = parseFloat(slXi.value);
+      const ixDb = parseInt(slLossIx.value, 10);
+      const ixLin = Math.pow(10, ixDb / 10);
+      outXi.textContent = xi.toFixed(1);
+      outLossIx.textContent = ixDb + ' dB';
+      lossBadge.textContent = ixDb + ' dB 隔离度';
+
+      const x0 = 68, x1 = 608, yTop = 28, yBot = 224;
+      const xiMin = 1.0, xiMax = 15.0;
+      const yMaxDb = 3.5;
+
+      const mapX = (v) => x0 + ((v - xiMin) / (xiMax - xiMin)) * (x1 - x0);
+      const mapY = (db) => yBot - (Math.min(yMaxDb, db) / yMaxDb) * (yBot - yTop);
+
+      // Grid & ticks
+      let gHtml = '', tHtml = '';
+      [0, 1, 2, 3].forEach((db) => {
+        const y = mapY(db);
+        gHtml += `<line x1="${x0}" y1="${y.toFixed(1)}" x2="${x1}" y2="${y.toFixed(1)}"/>`;
+        tHtml += `<text x="${x0 - 8}" y="${(y + 3.5).toFixed(1)}" text-anchor="end">${db} dB</text>`;
+      });
+      [1, 3, 5, 8, 11, 15].forEach((xv) => {
+        const x = mapX(xv);
+        tHtml += `<text x="${x.toFixed(1)}" y="${yBot + 16}" text-anchor="middle">${xv}</text>`;
+      });
+      gridG.innerHTML = gHtml;
+      ticksG.innerHTML = tHtml;
+
+      let dUni = '', dMzi = '', dForb = '';
+      const steps = 80;
+      for (let i = 0; i <= steps; i++) {
+        const xv = xiMin + (i / steps) * (xiMax - xiMin);
+        const u = universalIlDb(xv, ixLin).il;
+        const m = mziIlDb(xv, ixLin);
+        const px = mapX(xv).toFixed(1);
+        const pyU = mapY(u).toFixed(1);
+        const pyM = mapY(m).toFixed(1);
+        dUni += (i === 0 ? 'M' : 'L') + px + ' ' + pyU + ' ';
+        dMzi += (i === 0 ? 'M' : 'L') + px + ' ' + pyM + ' ';
+        dForb += (i === 0 ? `M${px} ${yBot} L${px} ${pyU} ` : `L${px} ${pyU} `);
+      }
+      dForb += `L${x1} ${yBot} Z`;
+      pathUni.setAttribute('d', dUni);
+      pathMzi.setAttribute('d', dMzi);
+      pathForb.setAttribute('d', dForb);
+
+      const curUni = universalIlDb(xi, ixLin);
+      const curMzi = mziIlDb(xi, ixLin);
+      const cx = mapX(xi).toFixed(1);
+      const cyU = mapY(curUni.il).toFixed(1);
+      const cyM = mapY(curMzi).toFixed(1);
+
+      cursorLine.setAttribute('x1', cx);
+      cursorLine.setAttribute('x2', cx);
+      gapLine.setAttribute('x1', cx);
+      gapLine.setAttribute('x2', cx);
+      gapLine.setAttribute('y1', cyM);
+      gapLine.setAttribute('y2', cyU);
+      dotUni.setAttribute('cx', cx);
+      dotUni.setAttribute('cy', cyU);
+      dotMzi.setAttribute('cx', cx);
+      dotMzi.setAttribute('cy', cyM);
+
+      rdIlUni.textContent = curUni.il < 0.1 ? curUni.il.toFixed(3) + ' dB' : curUni.il.toFixed(2) + ' dB';
+      rdTmax.textContent = (curUni.T * 100).toFixed(1) + '%';
+      rdIlMzi.textContent = curMzi.toFixed(2) + ' dB';
+      rdRatio.textContent = (curMzi / Math.max(curUni.il, 1e-4)).toFixed(1) + '×';
+    }
+
+    [slXi, slLossIx].forEach((el) => el.addEventListener('input', updateLoss));
+    updateLoss();
+  })();
+  </script>
+</body>
+</html>

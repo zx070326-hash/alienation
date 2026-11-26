@@ -1780,6 +1780,213 @@ abbr.term {
   border-top: 1px solid var(--line);
 }
 
+/* ==========================================================================
+   Interactive Visual Explainers (.interactive-lab)
+   Zero-dependency styling for interactive physics / algorithm widgets
+   ========================================================================== */
+
+.interactive-lab {
+  margin: 1.8rem 0 2.1rem;
+  padding: 24px 26px 22px;
+  background-color: var(--plate-bg);
+  background-image: radial-gradient(var(--plate-dot) 1px, transparent 1px);
+  background-size: 18px 18px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+}
+
+.lab-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px 16px;
+  margin-bottom: 16px;
+}
+
+.lab-title {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 650;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+.lab-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-border);
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
+.lab-stage {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 14px 14px 10px;
+  overflow: hidden;
+}
+
+.lab-stage svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  user-select: none;
+}
+
+.lab-controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px 18px;
+  margin-top: 16px;
+  padding: 14px 16px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+
+.lab-control {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.lab-control label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  font-family: var(--sans);
+  font-size: 12.5px;
+  font-weight: 550;
+  color: var(--muted);
+}
+
+.lab-control output {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  font-weight: 650;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.lab-control input[type="range"] {
+  width: 100%;
+  accent-color: var(--accent);
+  cursor: pointer;
+  margin: 2px 0;
+}
+
+.lab-readouts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.lab-readout {
+  padding: 11px 14px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.lab-readout span {
+  display: block;
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--subtle);
+}
+
+.lab-readout strong {
+  display: block;
+  margin-top: 3px;
+  font-family: var(--mono);
+  font-size: 14.5px;
+  font-weight: 650;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.lab-readout.is-highlight {
+  border-color: var(--accent-border);
+  background: var(--accent-soft);
+}
+.lab-readout.is-highlight strong { color: var(--accent); }
+
+.lab-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.lab-tab {
+  padding: 6px 13px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 12.5px;
+  font-weight: 550;
+  cursor: pointer;
+  transition: background-color 0.16s ease, color 0.16s ease, border-color 0.16s ease;
+}
+
+.lab-tab:hover {
+  color: var(--ink);
+  border-color: var(--accent-border);
+}
+
+.lab-tab[aria-pressed="true"] {
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-color: transparent;
+}
+
+.interactive-lab figcaption {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.insight-card {
+  margin: 1.4rem 0 1.6rem;
+  padding: 20px 22px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: var(--shadow-sm);
+}
+
+.insight-card h3 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+  color: var(--accent);
+}
+
+.insight-card p {
+  margin: 0;
+  font-size: 0.96rem;
+  line-height: 1.82;
+  color: var(--muted);
+}
+
 .chapter-turn a {
   display: inline-flex;
   align-items: center;
