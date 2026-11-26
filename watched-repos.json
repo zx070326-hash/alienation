@@ -1,0 +1,43 @@
+{
+  "notes": "Watched GitHub repositories for the alienation. interactive blog & technical writing automation. Add, remove, or toggle repositories below. Only public repositories or explicitly approved summaries should be published.",
+  "site_repo_path": "/Users/alienation/Downloads/github/alienation",
+  "publish_mode": "pull_request",
+  "default_section": "reports",
+  "repos": [
+    {
+      "repo": "zx070326-hash/sciforge-lean-cuda-cases",
+      "enabled": true,
+      "section": "reports",
+      "focus": "Explain the multi-round AI-assisted scientific collaboration stories (Lean stable sort proof & CUDA RMSNorm optimization) with clear intuitive takeaways and an interactive visualization.",
+      "last_published_sha": ""
+    },
+    {
+      "repo": "AIB001/ETALON",
+      "enabled": true,
+      "section": "projects",
+      "focus": "Track major updates to ETALON / MolQuarry / MolCascade / PRISM and explain verifiable agentic drug discovery mechanics clearly.",
+      "last_published_sha": ""
+    },
+    {
+      "repo": "zx070326-hash/armor-duel-laboratory",
+      "enabled": true,
+      "section": "projects",
+      "focus": "Explain the harness design, vision bot arena mechanics, and interesting lessons with an interactive visual demo.",
+      "last_published_sha": ""
+    },
+    {
+      "repo": "zx070326-hash/thin-modeling-agent",
+      "enabled": true,
+      "section": "ideas",
+      "focus": "Explain claim-level evidence qualification and generator-reviewer separation with interactive flow/state diagrams.",
+      "last_published_sha": ""
+    },
+    {
+      "repo": "zx070326-hash/ai-native4material-web",
+      "enabled": true,
+      "section": "reports",
+      "focus": "Track any newly resumed photothermal metamaterial design updates; respect paused status if unchanged.",
+      "last_published_sha": ""
+    }
+  ]
+}
