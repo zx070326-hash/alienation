@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>好玩 — alienation</title>
+  <meta name="description" content="alienation 的趣味展柜：AI 视频短片、交互物理实验、机器人竞技场与各种脑洞小玩具。">
+  <meta property="og:title" content="好玩 — alienation">
+  <meta property="og:description" content="科研之外同样上头的玩意：AI 视频、互动可视化和脑洞小项目。">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets-favicon.svg" type="image/svg+xml">
+  <script src="assets-theme.js"></script>
+  <link rel="stylesheet" href="assets-style.css">
+</head>
+<body>
+  <a class="skip" href="#main">跳转到主要内容</a>
+  <div class="site">
+    <header>
+      <a class="wordmark" href="zh-index.html">alienation<span class="brand-dot">.</span></a>
+      <nav aria-label="主导航">
+        <a href="zh-ideas.html">想法</a>
+        <a href="zh-projects.html">项目</a>
+        <a href="zh-reports.html">技术报告</a>
+        <a aria-current="page" href="zh-playground.html">好玩</a>
+        <a href="zh-about.html">关于</a>
+      </nav>
+      <div class="controls">
+        <a class="lang" href="en-playground.html" lang="en" aria-label="Read this page in English">EN</a>
+        <button class="theme" type="button" aria-label="切换明暗主题" title="切换明暗主题" hidden>
+          <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 2.5v2m0 15v2M2.5 12h2m15 0h2M5.3 5.3l1.4 1.4m10.6 10.6 1.4 1.4M5.3 18.7l1.4-1.4m10.6-10.6 1.4-1.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="page-heading">
+        <p class="eyebrow">PLAYGROUND / 趣味展柜</p>
+        <h1>好玩</h1>
+        <p class="intro">正经论文和硬核代码之外，这里专门收留那些纯粹因为「太有意思了」而捣鼓出来的东西——AI 视频、能动手拖动的交互小实验、视觉机器人竞技场，以及随时冒出来的脑洞。</p>
+      </section>
+
+      <div class="filter-bar" role="group" aria-label="按类型筛选">
+        <button class="filter-pill" type="button" data-filter="all" aria-pressed="true">全部</button>
+        <button class="filter-pill" type="button" data-filter="video" aria-pressed="false">AI 视频</button>
+        <button class="filter-pill" type="button" data-filter="interactive" aria-pressed="false">互动实验</button>
+        <button class="filter-pill" type="button" data-filter="toy" aria-pressed="false">趣味项目</button>
+      </div>
+
+      <section class="play-grid" aria-label="作品与实验展柜">
+        <!-- AI 视频展位 1：直接把下面 .play-placeholder 换成 <video controls src="media/你的视频.mp4"> 或 B站/YouTube iframe 即可播放 -->
+        <article class="play-card" data-category="video">
+          <div class="play-media">
+            <div class="play-placeholder">
+              <div class="play-icon-circle" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="20" height="20"><path d="M8 6.5v11l9.5-5.5Z" fill="currentColor"/></svg>
+              </div>
+              <span>AI 视频展位 #01 · 支持直接嵌入 B站 / YouTube 链接或本地 MP4</span>
+            </div>
+          </div>
+          <div class="play-body">
+            <div class="play-meta-row">
+              <span class="row-number">01</span>
+              <span class="row-status">AI 视频 · 待放片</span>
+            </div>
+            <h2>AI 视频短片 #01</h2>
+            <p>预留给我的 AI 生成视频作品——不管是脑洞短片、科学可视化动效还是视觉实验，把视频链接或 MP4 放进来就能直接全宽播放。</p>
+            <div class="card-links">
+              <a href="zh-about.html">关于作者</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- AI 视频展位 2 -->
+        <article class="play-card" data-category="video">
+          <div class="play-media">
+            <div class="play-placeholder">
+              <div class="play-icon-circle" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="20" height="20"><path d="M8 6.5v11l9.5-5.5Z" fill="currentColor"/></svg>
+              </div>
+              <span>AI 视频展位 #02 · 16:9 宽银幕自适应明暗主题</span>
+            </div>
+          </div>
+          <div class="play-body">
+            <div class="play-meta-row">
+              <span class="row-number">02</span>
+              <span class="row-status">AI 视频 · 待放片</span>
+            </div>
+            <h2>AI 视频短片 #02</h2>
+            <p>第二个放片位，随时可以接上新的生成式视频、多模态实验剪辑或者项目演示录屏。</p>
+          </div>
+        </article>
+
+        <!-- 互动实验：光隔离实时物理模拟器 -->
+        <article class="play-card" data-category="interactive">
+          <div class="play-media">
+            <svg viewBox="0 0 480 270" width="100%" height="100%" role="img" aria-label="光隔离实时微环与频谱交互实验缩略图">
+              <line x1="36" y1="156" x2="444" y2="156" stroke="var(--line-strong)" stroke-width="5" stroke-linecap="round"/>
+              <circle cx="152" cy="112" r="24" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2.2"/>
+              <circle cx="240" cy="112" r="24" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2.2"/>
+              <circle cx="328" cy="112" r="24" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2.2"/>
+              <circle cx="96" cy="156" r="5" fill="var(--accent)"/>
+              <circle cx="388" cy="156" r="5" fill="var(--accent)"/>
+              <circle cx="364" cy="176" r="4.5" fill="#d96b43" opacity="0.8"/>
+              <path d="M56 226 Q150 224 196 196 Q240 184 284 196 Q330 224 424 226" fill="none" stroke="var(--accent)" stroke-width="2.4"/>
+              <path d="M56 196 Q160 198 208 238 Q240 248 272 238 Q320 198 424 196" fill="none" stroke="#d96b43" stroke-width="2" stroke-dasharray="6 4"/>
+            </svg>
+          </div>
+          <div class="play-body">
+            <div class="play-meta-row">
+              <span class="row-number">03</span>
+              <span class="row-status">可玩 · 互动实验</span>
+            </div>
+            <h2>光的单行道 · 实时波动与频谱模拟器</h2>
+            <p>把非互易光隔离器的带宽极限做成了 60fps 交互动画：拖动微环数量和作用量滑块，亲眼看着光波绕圈、隔离带宽实时展开。</p>
+            <div class="card-links">
+              <a href="zh-optical-isolation.html">去玩一下 ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 趣味项目：装甲对决 -->
+        <article class="play-card" data-category="toy">
+          <div class="play-media">
+            <svg viewBox="0 0 480 270" width="100%" height="100%" role="img" aria-label="装甲对决视觉机器人竞技场示意">
+              <rect x="44" y="42" width="392" height="186" rx="14" fill="var(--surface)" stroke="var(--line-strong)" stroke-width="1.5"/>
+              <line x1="240" y1="42" x2="240" y2="228" stroke="var(--line)" stroke-dasharray="5 5"/>
+              <rect x="96" y="106" width="52" height="52" rx="10" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/>
+              <circle cx="122" cy="132" r="9" fill="var(--accent)"/>
+              <line x1="148" y1="132" x2="184" y2="132" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/>
+              <rect x="332" y="106" width="52" height="52" rx="10" fill="rgba(217,107,67,0.12)" stroke="#d96b43" stroke-width="2"/>
+              <circle cx="358" cy="132" r="9" fill="#d96b43"/>
+              <line x1="296" y1="132" x2="332" y2="132" stroke="#d96b43" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="240" cy="132" r="5" fill="var(--ink)" opacity="0.5"/>
+            </svg>
+          </div>
+          <div class="play-body">
+            <div class="play-meta-row">
+              <span class="row-number">04</span>
+              <span class="row-status">趣味项目 · 开源</span>
+            </div>
+            <h2>装甲对决 · 视觉机器人竞技场</h2>
+            <p>给 AI 智能体搭的视觉机器人对战竞技场（armor-duel-laboratory），看看不同脚本与 Harness 策略在场上真刀真枪打起来谁更机灵。</p>
+            <div class="card-links">
+              <a href="https://github.com/zx070326-hash/armor-duel-laboratory">GitHub ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 互动实验：首页 3D 帆船海景 -->
+        <article class="play-card" data-category="interactive">
+          <div class="play-media">
+            <svg viewBox="0 0 480 270" width="100%" height="100%" role="img" aria-label="3D 帆船与海豚海景">
+              <path d="M0 175 Q120 156 240 172 T480 168 L480 270 L0 270 Z" fill="#4d9fc4" opacity="0.55"/>
+              <path d="M0 198 Q140 182 280 198 T480 194 L480 270 L0 270 Z" fill="#23658a" opacity="0.78"/>
+              <path d="M172 184 l118-9 -26 24 -72-3 Z" fill="#a25740"/>
+              <path d="M225 176 V64" stroke="#6c5040" stroke-width="3.5" stroke-linecap="round"/>
+              <path d="M220 76 L154 170 L220 166 Z" fill="#f2f8fc"/>
+              <path d="M231 80 L306 164 L231 168 Z" fill="#ffffff"/>
+              <path d="M324 182 c8-18 22-24 38-17 l11 3 -7 5 -15-2 c-8 2-14 9-17 16 Z" fill="#6b9db2"/>
+            </svg>
+          </div>
+          <div class="play-body">
+            <div class="play-meta-row">
+              <span class="row-number">05</span>
+              <span class="row-status">WebGL · 3D 场景</span>
+            </div>
+            <h2>首页里的 3D 小帆船与海豚</h2>
+            <p>用 Three.js 写的一个轻量实时三维海面——海浪随风起伏，小船轻轻晃荡，海豚每隔几秒会跃出水面溅起水花，偶尔还有几只海鸥路过。</p>
+            <div class="card-links">
+              <a href="zh-index.html">回首页看海 ↗</a>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <a class="text-link back" href="zh-index.html">← 回到首页</a>
+    </main>
+
+    <footer>
+      <div>
+        <a class="footer-brand" href="zh-index.html">alienation.</a>
+        <p>说点人话，做点好玩的科研。</p>
+      </div>
+      <div class="footer-right">
+        <span>© 2026 alienation</span>
+        <div class="legal"><a href="dashboard/" title="个人记事。页面仍是公开的，口令只是一层轻量门。" rel="nofollow">个人</a></div>
+        <a href="en-playground.html" lang="en">English edition <span aria-hidden="true">↗</span></a>
+      </div>
+    </footer>
+  </div>
+
+  <script src="assets-app.js" defer></script>
+  <script>
+  (function () {
+    const pills = [...document.querySelectorAll('.filter-pill')];
+    const cards = [...document.querySelectorAll('.play-card')];
+    pills.forEach((pill) => {
+      pill.addEventListener('click', () => {
+        const f = pill.dataset.filter;
+        pills.forEach((p) => p.setAttribute('aria-pressed', String(p === pill)));
+        cards.forEach((c) => {
+          c.hidden = f !== 'all' && c.dataset.category !== f;
+        });
+      });
+    });
+  })();
+  </script>
+</body>
+</html>
