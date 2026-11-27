@@ -1,6 +1,6 @@
 # alienation
 
-Bilingual static notebook for Xin Zheng. The public writing name on this site is alienation.
+Bilingual static notebook and interactive tech blog for **alienation** (Chu Kochen Honors College, Zhejiang University — AI-Native, AI4Sci & AutoResearch).
 
 The live site is whatever is on `main`:
 
